@@ -55,7 +55,7 @@ const ContShoppingBag = ({ items = {}, deleteMethod = () => { }, buyProducts = (
             </ListGroup>
             {
                 total > 0 ? (
-                    <Row className='mt-5'>
+                    <Row className='mt-5 mb-4'>
                         <Col sm={2}>
                             <h4 className='text-right'>
                                 <strong>TOTAL</strong>

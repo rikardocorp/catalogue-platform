@@ -67,7 +67,7 @@ export class index extends Component {
                 </Head>
                 <LayoutSection className='mt-2 p-4 p-md-1'>
                     <Title className='pt-4 text-uppercase'>
-                        <span className='cursor-pointer pr-2 hvr-backward' onClick={() => Router.back()}><i className="fas fa-chevron-left"></i> </span>
+                        <span className='cursor-pointer pr-2 hvr-backward' onClick={() => Router.push('/')}><i className="fas fa-chevron-left"></i> </span>
                         <span> {TITLE_BAG}</span>
                     </Title>
                 </LayoutSection>

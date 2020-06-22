@@ -18,7 +18,7 @@ class index extends Component {
                 </Head>
 
                 <LayoutSection className='mt-2 '>
-                    <Banner items={BANNER_TOP} typeStyle={'type1'} autoPlay={false} controls={false} indicators={false}></Banner>
+                    <Banner className='animate__animated animate__flipInX' items={BANNER_TOP} typeStyle={'type1'} autoPlay={false} controls={false} indicators={false}></Banner>
                 </LayoutSection>
 
                 <LayoutSection className='mt-4 p-4 p-md-1'>
