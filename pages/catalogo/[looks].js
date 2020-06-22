@@ -6,20 +6,11 @@ import LayoutSection from '../../components/Layouts/LayoutSection'
 import Title from '../../components/Catalogue/Title'
 import { format } from 'react-string-format'
 import { TITLE_CATALOGUE_LOOKS, URL_CATALOGUE_LOOK } from '../../config'
-import Loading from '../../components/loading'
+// import Loading from '../../components/loading'
 
-import {Card, CardImg, CardBody, CardTitle, Row, Col } from 'reactstrap'
+// import {Card, CardImg, CardBody, CardTitle, Row, Col } from 'reactstrap'
 import ContCatalogue from '../../containers/ContCatalogue'
 import ProductItem from '../../components/CataloguePagination/ProductItem'
-import CatalogueListSimple from "../../components/CataloguePagination/CatalogueListSimple";
-
-
-import useSWR, { useSWRPages } from "swr";
-import fetcher from "../../lib/fetcher";
-import PokemonShort from "./PokemonShort";
-import useOnScreen from "./UseOnScreen";
-
-const IMAGEURL = '../../images/categories/cat_casa.jpg3'
 const Looks = () => {
     const router = useRouter()
     const { looks=null } = router.query
