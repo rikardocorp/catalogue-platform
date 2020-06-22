@@ -14,7 +14,8 @@ const Catalogue = (props) => {
         items=null,
         className='',
         contClassName='',
-        colSizes=null
+        colSizes=null,
+        replaceLink=false
     } = props
 
     return (
@@ -29,6 +30,7 @@ const Catalogue = (props) => {
                         componentItem={componentItem}
                         data={items}
                         className={className}
+                        replaceLink={replaceLink}
                         colSizes={colSizes}>
                     </ListProducts>
                 ): (

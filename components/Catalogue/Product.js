@@ -4,23 +4,35 @@ import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
 // import Img from 'react-image';
 import {boxCreator} from '../../lib/utils'
-import {
-    Card, Button, CardImg, CardTitle, CardText,
-    CardSubtitle, CardBody, Col
-  } from 'reactstrap';
+import {Col} from 'reactstrap';
+import {URL_SEARCH_SKU} from '../../config'
+import useSWR from 'swr'
+import fetcher from "../../lib/fetcher"
 
-// import img_model from '../../public/model.jpg'
+const handler = (sku = null, replaceLink=false) => {
 
-const image = '/images/model.jpg'
+    if (sku != null) {
+        if (replaceLink) {
+            Router.replace('/producto/[id]', '/producto/' + sku)
 
-const handler = (sku) => {
-    Router.push('/producto/[id]', '/producto/' + sku)
+        } else {
+            Router.push('/producto/[id]', '/producto/' + sku)
+
+        }
+    }
 }
 
 
-const Product = ({ data, colSizes=null}) => {
+const Product = ({ data, colSizes=null, replaceLink=false}) => {
 
-    let { sku = '', imageUrl = '', item_key_features = '', box = null, size_height = 0, size_width=0} = data
+    let query = data
+    if (typeof (data) != 'object') {
+        let urlItem = URL_SEARCH_SKU + data
+        let responseA = useSWR(urlItem, fetcher);
+        query = responseA.data ? responseA.data[0] : undefined
+    }
+
+    let { sku = null, imageUrl = '', item_key_features = '', box = null, size_height = 0, size_width = 0 } = query || {}
     let { styleBox = {}, styleValues = {}, styleImage={}, widthImage = 100 } = box ? boxCreator(box, size_width, size_height, 0.1) : {}
 
     let auxPercent = 0.8
@@ -33,20 +45,24 @@ const Product = ({ data, colSizes=null}) => {
     let newTop = (parseFloat(styleValues.top) + styleValues.height / 2 ) * auxPercent//* factor//newWidth /100
     let newLeft = parseFloat(styleValues.left) + styleValues.width / 2 //* factor//newWidth /100
 
-    let newStyle = {
-        backgroundImage: `url(${imageUrl})`,
-        backgroundSize: newWidth + '%',
-        backgroundPosition: newLeft + '% ' + newTop + '%'
+    let newStyle = null
+    let loading = 'fas fa-spinner fa-spin fa-1x fa-fw'
+    if (query) {
+        loading = 'fas fa-shopping-bag'
+        newStyle = {
+            backgroundImage: `url(${imageUrl})`,
+            backgroundSize: newWidth + '%',
+            backgroundPosition: newLeft + '% ' + newTop + '%'
+        }
     }
-
     let configCols = colSizes ? colSizes : {sm:4}
 
     return (
         <Col {...configCols} className='hvr-float'>
-            <article onClick={() => handler(sku)} className='cp-product cursor-pointer mb-4 box-shadow animate__animated animate__flipInX'>
+            <article onClick={() => handler(sku, replaceLink)} className='cp-product cursor-pointer mb-4 box-shadow animate__animated animate__flipInX'>
                 <div className='cp-icons z-10'>
                     <span className='cp-icon-store cursor-pointer'>
-                        <i className="fas fa-shopping-bag"></i>
+                        <i className={loading}></i>
                     </span>
                 </div>
                 {/* <div className='boxing' style={styleBox}></div> */}

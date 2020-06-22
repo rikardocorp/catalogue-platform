@@ -4,12 +4,13 @@ import Product from './Product'
 
 const ListProducts = (props) => {
 
-    let { data = [], typeCard = 'column', className = '', colSizes=null} = props
+    let { data = [], typeCard = 'column', className = '', colSizes = null, replaceLink=false} = props
     const ComponentItem = props.componentItem || Product
     const CardComponent = typeCard == 'column' ? CardColumns : CardDeck
     let list_products = data.map( (item, key) => {
+        console.log(item)
         return (
-            <ComponentItem key={key} data={item} colSizes={colSizes}/>
+            <ComponentItem key={key} data={item} replaceLink={replaceLink} colSizes={colSizes}/>
         )
     })
 

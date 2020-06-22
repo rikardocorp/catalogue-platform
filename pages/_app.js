@@ -13,4 +13,5 @@ const MyApp = ({ Component, pageProps }) => (
     <Component {...pageProps} />
 );
 
-export default wrapper.withRedux(MyApp);
+// export default wrapper.withRedux(MyApp);
+export default MyApp;

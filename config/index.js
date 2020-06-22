@@ -83,9 +83,10 @@ export const ITEMS_CATEGORIES = [
 ]
 
 // SERVICES URL
-export const URL_INDEX_RECOMMENDER = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_brand_and_gender?brand=MADISON&gender=MUJER&limit=4&offset=5'
+export const URL_INDEX_RECOMMENDER = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_look_and_gender?look=URBANO&gender=MUJER&limit=4&offset=60'
 export const URL_CATALOGUE_LOOK = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_look_and_gender?look={0}&gender=MUJER&limit=20&offset=0'
 export const URL_SEARCH_SKU = 'https://todo-6drzojst7q-uc.a.run.app/skus/'
+export const URL_RECOMMENDER_SAMES = 'https://piloto-druid-spsa.appspot.com/ver1/v11/sku_cross/'
 
 // MESSAGES TOAST
 export const MESSAGE_ADD_CART = 'Agregó un producto a la bolsa.'

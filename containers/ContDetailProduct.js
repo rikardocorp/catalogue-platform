@@ -6,7 +6,7 @@ import Product from '../components/Catalogue/Product'
 import useSWR from 'swr'
 import fetcher from "../lib/fetcher"
 import {Button} from 'reactstrap'
-import { URL_SEARCH_SKU, MESSAGE_ADD_CART} from '../config/index'
+import { URL_SEARCH_SKU, MESSAGE_ADD_CART, URL_RECOMMENDER_SAMES} from '../config/index'
 import { useToasts } from 'react-toast-notifications'
 
 const onClickNotify = (notify, message, item) => {
@@ -36,7 +36,6 @@ const onClickNotify = (notify, message, item) => {
 
 const ContDetailProduct = ({ id = null, className = '', item=null }) => {
     console.log('ContDetailProduct')
-    // let myCart = JSON.parse(localStorage.getItem('myCart')) || {};
     const { addToast } = useToasts()
     
     // LOAD PRINCIPAL PRODUCT 
@@ -45,18 +44,18 @@ const ContDetailProduct = ({ id = null, className = '', item=null }) => {
         let urlItem = URL_SEARCH_SKU + id
         let responseA = useSWR(urlItem, fetcher);
         query = responseA.data ? responseA.data[0] : undefined
+        console.log('URL_SEARCH_SKU:', urlItem)
     }
 
-    let url = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_brand_and_gender?brand=MADISON&gender=MUJER&limit=4&offset=5'
-    const { data, error } = useSWR(url, fetcher);
-    console.log(data)
+    const { sku = null, productName = '', brand = '' } = query || {}
     let items = null
-    if (data != undefined) {
-        items = data.data.slice(0, 8)
+    let url = URL_RECOMMENDER_SAMES + sku
+    const { data, error } = useSWR(url, fetcher);
+    console.log('URL_RECOMMENDER_SAMES:', url)
+    if (data != undefined && data.data && data.data.length > 0) {
+        console.log(data.data[0]['items'])
+        items = data.data[0]['items']
     }
-
-    let { productName='', brand='', sku='' } = query || {}
-
     return (  
         <Container fluid className={className}>
 
@@ -81,6 +80,7 @@ const ContDetailProduct = ({ id = null, className = '', item=null }) => {
                         componentItem={Product}
                         colSizes={{ md: 3 }}
                         contClassName='mt-5'
+                        replaceLink={true}
                         // viewMore={() => this.onclick()}
                         title={'TE RECOMENDAMOS'}>
                     </Catalogue>

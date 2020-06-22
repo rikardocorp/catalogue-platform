@@ -39,14 +39,14 @@ const Example = (props) => {
               <NavLink href="https://github.com/reactstrap/reactstrap">Hombres</NavLink>
             </NavItem>
             <NavItem className='w-100'>
-                <div class="input-group input-group-sm mt-1">
-                  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
-                  <div class="input-group-append">
-                    <span class="input-group-text" id="basic-addon2">
-                      <i className='fa fa-search'></i>
-                    </span>
-                  </div>
+              <div className="input-group input-group-sm mt-1">
+                <input type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"/>
+                <div className="input-group-append">
+                  <span className="input-group-text" id="basic-addon2">
+                    <i className='fa fa-search'></i>
+                  </span>
                 </div>
+              </div>
             </NavItem>
           
           </Nav>

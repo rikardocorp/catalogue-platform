@@ -2,7 +2,7 @@ import react from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Navbar from '../navbar'
-import Loading from '../loadingBar'
+// import Loading from '../loadingBar'
 import { HEADER_TITLE } from '../../config'
 import { colorMode } from '../../lib/utils'
 import { ToastProvider, DefaultToast } from 'react-toast-notifications'
@@ -36,7 +36,7 @@ const Layout = ({ children, darkMode=false }) => {
                 <meta name="og:title" content={siteTitle} />
                 <meta name="twitter:card" content="summary_large_image" />
             </Head>
-            <Loading></Loading>
+            {/* <Loading></Loading> */}
             <header className='bg-dark'>
                 <Navbar className='w-lg-75 w-xl-75 w-sm-100 w-md-100 m-auto'></Navbar>
             </header>

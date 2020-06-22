@@ -145,8 +145,11 @@ class PrincipalImage extends Component {
                 }
                 <Card className={'cp-content-image'}>
                     <CardBody className='position-relative p-0'>
-                        {/* <div className='boxing' style={this.state.styleBox}></div> */}
-                        <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
+                        {
+                            imageUrl ? (
+                                <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
+                            ) : <div className='square-box'></div>
+                        }
                         <div className='tags-list'>
                             {list_tags}
                         </div>
