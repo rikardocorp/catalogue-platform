@@ -1,0 +1,380 @@
+@import "bootstrap";
+@import 'variables.scss';
+@import 'extended.scss';
+@import './utils/loading.scss';
+// @import url('https://fonts.googleapis.com/css?family=Dancing+Script&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@font-face {
+  font-family: 'Muli';
+  src: url("../fonts/Muli/Muli-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: 'Muli';
+  src: url("../fonts/Muli/Muli-Medium.ttf") format("truetype");
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Muli';
+  src: url("../fonts/Muli/Muli-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Muli';
+  src: url("../fonts/Muli/Muli-ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'Muli';
+  src: url("../fonts/Muli/Muli-Black.ttf") format("truetype");
+  font-weight: 900;
+}
+
+body{
+  background: black;
+  // height: 100vh;
+  font-family: 'Muli' !important;
+  header {
+    &.bg-dark {
+      background-color: black !important;
+    }
+    .navbar {
+      .navbar-nav{
+        width: 90%;
+      }
+      .navbar-brand{
+        font-size: 1.7em;
+        font-weight: 600;
+        padding: 0;
+        letter-spacing: 0.02em;
+      }
+      .navbar-text{
+        &:hover{
+          color: white;
+        }
+      }
+    }
+  }
+  main{
+    min-height: calc(100vh - 57px);
+  }
+  .react-toast-notifications__container{
+    margin-top: 57px;
+  }
+}
+
+.cp-toast{
+  background-color: #363636 !important;
+  color: white !important;
+  .react-toast-notifications__toast__icon-wrapper{
+    background: black;
+  }
+}
+
+.cp-modal{
+  &.cp-modal-bag {
+    h1{
+      font-size: 5em;
+    }
+  }
+}
+
+.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+.cp-catalogue {
+  .card-columns {
+      @include media-breakpoint-only(xl) {
+        column-count: 4;
+      }
+      @include media-breakpoint-only(lg) {
+        column-count: 4;
+      }
+      @include media-breakpoint-only(md) {
+        column-count: 2;
+      }
+      @include media-breakpoint-only(sm) {
+        column-count: 2;
+      }
+  }
+}
+
+.cp-title{
+  font-weight: 700;
+  .cp-onclick {
+    font-size: 0.5em;
+    line-height: 2.5em;
+  }
+}
+
+.cp-onclick {
+  cursor: pointer;
+}
+
+.cp-catalogue-looks, .cp-catalogue-products1{
+  visibility: hidden;
+  .cp-product{
+    transition:.4s all !important; 
+    visibility: visible;
+    cursor: pointer;
+  }
+  &:hover .cp-product{
+    filter: grayscale(100%); //blur(1px);
+    opacity: 0.5;
+    &:hover{
+      filter: grayscale(0); //blur(0);
+      opacity: 1;
+      transform: scale(1.2) !important;
+      z-index: 10;
+    }
+  }
+}
+
+.cp-product{
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  .cp-product-cover{
+    display: none !important;
+    top: 0;
+    background: rgba(0, 0, 0, 0.17);
+    bottom: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    span {
+      font-size: 3.5em;
+      color: #ffffff;
+      text-shadow: 0px 2px 0px black;
+    }
+  }
+  .cp-icons{
+    position: absolute;
+    text-align: right;
+    width: 100%;
+    .cp-icon-store{
+      display: inline-block;
+      padding: 2px 7px;
+      background: black;
+      border-radius: 0.1em;
+      color: white;
+    }
+  }
+  .card-body{
+    line-height: 1.3em;
+    color: #656565;
+  }
+}
+
+.cp-button{
+  background: black !important;
+  border-radius: 0.1em !important;
+}
+
+.cp-no-cart{
+    border: 1px dashed #c2c2c2;
+    border-radius: 0.5em;
+}
+
+.cp-product-category{
+  background: none !important;
+  border: none !important;
+  img {
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
+  }
+  .card-title {
+    // position: absolute;
+    font-size: 0.9em;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000000;
+    margin-top: 2%;
+    margin-bottom: 4%;
+  }
+  .card-title-1 {
+    position: absolute;
+    bottom: 5%;
+    background: #0000004d;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+  }
+}
+
+.cp-banner {
+  &.carousel {
+    &.cp-banner-type1 {
+      .carousel-caption {
+        h3 {
+          span{
+            background: white;
+            padding: 2px 10px;
+            color: #515151;
+          }
+        }
+      }
+    } 
+
+    &.cp-banner-type2 {
+      .carousel-caption {
+        >h3 {
+          span{
+            background: #1f1f1f;
+            padding: 3px 20px;
+            color: #ffffff;
+          }
+        }
+        >p {
+          span {
+            background: #1f1f1f;
+            padding: 2px 5px;
+            line-height: 4em;
+          }
+        }
+      }
+    } 
+    .carousel-caption {
+      @include media-breakpoint-up(md) {
+        top: 6%;
+      }
+      h3 {
+        span {
+          @include media-breakpoint-only(xl) {
+            line-height: 1.6;
+            font-size: 1.5em;
+          }
+          @include media-breakpoint-only(lg) {
+            line-height: 1.6;
+            font-size: 1.1em;
+          }
+          @include media-breakpoint-only(md) {
+            line-height: 1.7;
+            font-size: 1.2em;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cp-catalogue{
+  .boxing{
+    z-index: 0;
+    position: absolute;
+    border-radius: 0.3em;
+    border: 2px dashed rgba(255, 0, 0, 0.57);
+    // display: none;
+  }
+}
+
+.cp-principal-image{
+  .cp-content-image{
+    // border-radius: 100%;
+    overflow: hidden;
+    // background: #dbe0ea;
+    // &:hover .boxing{
+    //     display: block;
+    // }
+    position: relative;
+    .boxing{
+      z-index: 0;
+      position: absolute;
+      border-radius: 0.3em;
+      border: 2px dashed rgba(255, 0, 0, 0.57);
+      // display: none;
+    }
+    .tags-list{
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      // border-radius: 100%;
+      a {
+        width: 100%;
+        display: block;
+        &.active span.activated{
+            background: #387df3;
+        }
+      }
+      span{
+        font-size: 1.1em;
+        position: absolute;
+        width: 30%;
+        background: rgba(0, 0, 0, 0.31);
+        padding: 3px 0px 3px 8px;
+        border-radius: 0.2em;
+        color: white;
+        cursor:pointer;
+        -webkit-transition: width 1.2s, height 4s; /* For Safari 3.1 to 6.0 */
+        transition: width 1.2s, height 4s;
+        text-transform: capitalize;
+        opacity: 0.3;
+        &.activated{
+            opacity: 1;
+            &:hover{
+                background: #387df3;
+                width: 36%;
+            }
+        }
+        &.tag1{
+          right: -1%;
+          top: 12%;
+        }
+        &.tag2{
+          top: 24%;
+          text-align: right;
+          left: -3%;
+          padding: 3px 8px 3px 0px;
+        }
+        &.tag3{
+          right: -4%;
+          top: 47%;
+        }
+        &.tag4{
+          top: 75%;
+          right: -2%;
+        }
+        &.tag5{
+          top: 78%;
+          left: -2%;
+          text-align: right;
+          width: 32%;
+          padding: 3px 8px 3px 0px;
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(xl) {}
+@include media-breakpoint-up(lg) {}
+@include media-breakpoint-only(md) {
+}
+
+@include media-breakpoint-up(md){
+  $size-height-header-bar: 56px;
+  .m-height-header-bar{
+    margin-top: $size-height-header-bar;
+  }
+  .h-100-header-bar{
+    height: calc(100vh - #{$size-height-header-bar});
+  }
+}
+
+@include media-breakpoint-only(sm) {
+  .position-sm-relative{
+    position: relative !important;
+  }
+}
+
+@include media-breakpoint-only(xs) {
+  .position-xs-relative{
+    position: relative !important;
+  }
+}

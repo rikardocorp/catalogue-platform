@@ -1,0 +1,50 @@
+
+$size-height: 3px;
+
+.slider{
+  // position:absolute;
+  width:100%;
+  border-bottom: 4px solid #4c4c4c;
+
+  height: $size-height;
+  overflow-x: hidden;
+  z-index: 2;
+
+  .line{
+    position:absolute;
+    opacity: 0.4;
+    background:#242424;
+    width:100%;
+    height: $size-height;
+  }
+  .subline{
+    position:absolute;
+    background:#387df3;
+    height: $size-height; 
+    border-radius: 2em;
+  }
+  .subline2{
+    position:absolute;
+    background:#95f7dd;
+    height: $size-height; 
+    border-radius: 2em;
+  }
+  .inc{
+    animation: increase 2s infinite;
+  }
+  .dec{
+    animation: decrease 2s 0.5s infinite;
+  }
+
+  .inc2{
+    animation: increase 2s 0.5s infinite;
+  }
+  .dec2{
+    animation: decrease 2s 1s infinite;
+  }
+}
+
+@keyframes increase {
+   from { left: -5%; width: 5%; }
+   to { left: 130%; width: 100%;}
+}
