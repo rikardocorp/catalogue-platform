@@ -118,11 +118,11 @@ body{
     cursor: pointer;
   }
   &:hover .cp-product{
-    filter: grayscale(100%); //blur(1px);
-    opacity: 0.5;
+    filter: grayscale(25%); //blur(1px);
+    // opacity: 0.5;
     &:hover{
       filter: grayscale(0); //blur(0);
-      opacity: 1;
+      // opacity: 1;
       transform: scale(1.2) !important;
       z-index: 10;
     }

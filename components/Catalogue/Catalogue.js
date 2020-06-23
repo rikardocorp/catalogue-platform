@@ -8,7 +8,7 @@ const Catalogue = (props) => {
     let { 
         id=null,
         componentItem = null,
-        viewMore = () => {}, 
+        viewMore = null, 
         typeCard='column', 
         title=null,
         items=null,

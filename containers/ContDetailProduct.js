@@ -6,7 +6,7 @@ import Product from '../components/Catalogue/Product'
 import useSWR from 'swr'
 import fetcher from "../lib/fetcher"
 import {Button} from 'reactstrap'
-import { URL_SEARCH_SKU, MESSAGE_ADD_CART, URL_RECOMMENDER_SAMES} from '../config/index'
+import { URL_SEARCH_SKU, MESSAGE_ADD_CART, URL_RECOMMENDER_SAMES, TITLE_SIMILAR_PRODUCTS} from '../config/index'
 import { useToasts } from 'react-toast-notifications'
 
 const onClickNotify = (notify, message, item) => {
@@ -82,7 +82,7 @@ const ContDetailProduct = ({ id = null, className = '', item=null }) => {
                         contClassName='mt-5'
                         replaceLink={true}
                         // viewMore={() => this.onclick()}
-                        title={'TE RECOMENDAMOS'}>
+                        title={TITLE_SIMILAR_PRODUCTS}>
                     </Catalogue>
                 </Col>
             </Row>

@@ -8,7 +8,7 @@ export const TITLE_LOOK = '¿TIENES UN LOOK EN MENTE?'
 export const TITLE_SELECT_LOOKS = 'Estas son las prendas que tenemos para tí'
 export const TITLE_CATALOGUE_LOOKS = 'Estos son los looks {0} que tenemos para tí'
 export const TITLE_BAG = 'Bolsa de Compras'
-
+export const TITLE_SIMILAR_PRODUCTS = 'OTROS PRODUCTOS SIMILARES'
 // VARIABLES
 export const PATH_IMAGE = ''
 
