@@ -86,7 +86,9 @@ export const ITEMS_CATEGORIES = [
 export const URL_INDEX_RECOMMENDER = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_look_and_gender?look=URBANO&gender=MUJER&limit=4&offset=60'
 export const URL_CATALOGUE_LOOK = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_look_and_gender?look={0}&gender=MUJER&limit=20&offset=0'
 export const URL_SEARCH_SKU = 'https://todo-6drzojst7q-uc.a.run.app/skus/'
-export const URL_RECOMMENDER_SAMES = 'https://piloto-druid-spsa.appspot.com/ver1/v11/sku_cross/'
+// export const URL_RECOMMENDER_SAMES = 'https://piloto-druid-spsa.appspot.com/ver1/v11/sku_cross/'
+export const URL_RECOMMENDER_SAMES = 'https://todo-6drzojst7q-uc.a.run.app/sku_moda_ver1_cross/'
+export const URL_RECOMMENDER_CROSS = 'https://todo-6drzojst7q-uc.a.run.app/sku_moda_ver1_fast/'
 
 // MESSAGES TOAST
 export const MESSAGE_ADD_CART = 'Agregó un producto a la bolsa.'

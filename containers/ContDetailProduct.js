@@ -52,9 +52,9 @@ const ContDetailProduct = ({ id = null, className = '', item=null }) => {
     let url = URL_RECOMMENDER_SAMES + sku
     const { data, error } = useSWR(url, fetcher);
     console.log('URL_RECOMMENDER_SAMES:', url)
-    if (data != undefined && data.data && data.data.length > 0) {
-        console.log(data.data[0]['items'])
-        items = data.data[0]['items']
+    if (data != undefined && data.data && data.data.items.length > 0) {
+        console.log(data.data['items'])
+        items = data.data['items']
     }
     return (  
         <Container fluid className={className}>

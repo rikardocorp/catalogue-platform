@@ -7,7 +7,7 @@ import fetcher from "../lib/fetcher"
 import Product from '../components/Catalogue/Product'
 
 import { Container, Row, Col } from 'reactstrap'
-import { CATEGORIES } from '../config/index'
+import { CATEGORIES, URL_RECOMMENDER_CROSS, URL_SEARCH_SKU } from '../config/index'
 
 const ViewMore = (key, data, setData, change, setChange) => {
     data[key] = !data[key]
@@ -28,12 +28,12 @@ const ContDetailLook = ({sku=null, className=''}) => {
 
 
     // LOAD PRINCIPAL IMAGE
-    let urlItem = 'https://todo-6drzojst7q-uc.a.run.app/skus/' + sku
+    let urlItem = URL_SEARCH_SKU + sku
     let responseA = useSWR(urlItem, fetcher);
     const query = responseA.data ? responseA.data[0] : undefined
     
     // LOAD RELATIONS
-    let urlRel = 'https://piloto-druid-spsa.appspot.com/ver1/v11/sku_json_fast/' + sku
+    let urlRel = URL_RECOMMENDER_CROSS + sku
     let responseB = useSWR(urlRel, fetcher);
     const relations = ProcessRelations(responseB.data)
     const contentCategories = RecommenderCategories(relations, flags, setFlags, change, setChange)
