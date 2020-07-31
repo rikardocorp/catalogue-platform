@@ -56,6 +56,7 @@ const CatalogueList = ({ keyName='default', url='', componentItem=null, classNam
     const isOnScreen = useOnScreen($loadMoreButton, "200px");
 
     React.useEffect(() => {
+        console.log('::: React.useEffect :::')
         if (!infiniteScrollEnabled || !isOnScreen) return;
 
         loadMore();

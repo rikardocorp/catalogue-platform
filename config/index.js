@@ -92,4 +92,4 @@ export const URL_RECOMMENDER_CROSS = 'https://todo-6drzojst7q-uc.a.run.app/sku_m
 
 // MESSAGES TOAST
 export const MESSAGE_ADD_CART = 'Agregó un producto a la bolsa.'
-export const MESSAGE_REMOVE_CART = 'Removió un producto a la bolsa.'
+export const MESSAGE_REMOVE_CART = 'Removió un producto de la bolsa.'

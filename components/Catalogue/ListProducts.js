@@ -8,7 +8,7 @@ const ListProducts = (props) => {
     const ComponentItem = props.componentItem || Product
     const CardComponent = typeCard == 'column' ? CardColumns : CardDeck
     let list_products = data.map( (item, key) => {
-        console.log(item)
+        // console.log(item)
         return (
             <ComponentItem key={key} data={item} replaceLink={replaceLink} colSizes={colSizes}/>
         )

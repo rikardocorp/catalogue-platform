@@ -8,14 +8,13 @@ import Title from '../Catalogue/Title'
 import { colorMode } from '../../lib/utils'
 
 
-class PrincipalImage extends Component {
+class PrincipalImageExt extends Component {
 
     state = {
         isOn: true,
         styleBox: {},
         styleImage: {},
         widthImage: '100%',
-        imagePrincipal: null
     }
 
     get_width = (width, height) => {
@@ -62,11 +61,10 @@ class PrincipalImage extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.item && this.props.item.sku != prevProps.item.sku) {
-            this.setState({
-                imagePrincipal: null
-            })
-        }
+        // console.log('componentDidUpdate')
+        // if (this.props.item && prevProps.item && this.props.item.sku !== null && this.props.item.sku !== prevProps.item.sku) {
+        //     this.updateBox()
+        // }
     }
 
     getBox = (box, width, height) => {
@@ -104,22 +102,15 @@ class PrincipalImage extends Component {
         })
     }
 
-    changeImg = (img) => {
-        this.setState({
-            imagePrincipal: img
-        })
-    }
-
     render() {
         let classOn = 'off'
         if (this.state.isOn) {
             classOn = 'on'
         }
 
-        const { item = {}, item_ext={}, className='', darkMode=false, title=null} = this.props
+        const { item = {}, className = '', darkMode = false, title = null } = this.props
         const { bgColor, textColor, textColorInverted } = colorMode(darkMode)
         const { sku = null, productName = '', image = null, productId = null, imageId = null, link = null, imageUrl = null } = item || {}
-        const { images = [] } = item_ext || {}
         // const title = productName
         const categories = this.props.categories
         const version = this.props.version
@@ -142,23 +133,9 @@ class PrincipalImage extends Component {
             })
         }
 
-        let contentImages = null
-        if (images.length > 0) {
-            // contentImages = images.map((img, key) => <img key={key} onClick={() => this.changeImg(img)} width='100' src={img}></img>)
-            contentImages = images.slice(0,4).map((img, key) => {
-                return (
-                    <div className='rounded hvr-forward' key={key} onClick={() => this.changeImg(img)}>
-                        <img className='w-100' src={img}></img>
-                    </div>
-                )
-            })
-
-        }
-
-        let imagePrincipal = this.state.imagePrincipal
+        let imagePrincipal = null
         if (sku !== null) {
-            // imagePrincipal = <Image url={imageUrl} width={this.state.widthImage} style={this.state.styleImage}></Image>
-            imagePrincipal = imagePrincipal == null ? imageUrl : imagePrincipal
+            imagePrincipal = <Image url={imageUrl} width={this.state.widthImage} style={this.state.styleImage}></Image>
         }
 
         return (
@@ -169,8 +146,8 @@ class PrincipalImage extends Component {
                 <Card className={'cp-content-image'}>
                     <CardBody className='position-relative p-0'>
                         {
-                            imagePrincipal ? (
-                                <CardImg top width="100%" src={imagePrincipal} alt="Card image cap" />
+                            imageUrl ? (
+                                <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
                             ) : <div className='square-box'></div>
                         }
                         <div className='tags-list'>
@@ -178,12 +155,9 @@ class PrincipalImage extends Component {
                         </div>
                     </CardBody>
                 </Card>
-                <div className='cp-list-images-preview d-flex align-content-between flex-wrap'>
-                    {contentImages}
-                </div>
             </div>
         )
     }
 }
 
-export default PrincipalImage
+export default PrincipalImageExt

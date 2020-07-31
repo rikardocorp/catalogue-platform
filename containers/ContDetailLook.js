@@ -69,6 +69,7 @@ const RecommenderCategories = (recommenderData, STORAGE, SETSTORAGE, CHANGE, SET
                 console.log('RecommenderCategories:')
                 console.log(STORAGE[key])
                 data = !STORAGE[key] ? data.slice(0,3) : data
+                console.log(data)
                 let key_name = recommenderData[key].id
                 contentCategories.push(
                     <Catalogue key={index} id={key_name} typeCard={'deck'} items={data}

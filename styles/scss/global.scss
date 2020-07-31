@@ -166,6 +166,79 @@ body{
   }
 }
 
+.cp-list-images-preview{
+  width: 22%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  padding: 10% 4%;
+  > div{
+    width: 58px;
+    display: inline-block;
+    cursor: pointer;
+    border: 1px solid lightgrey;
+    overflow: hidden;
+    img{
+      // filter: grayscale(100%);
+    }
+  }  
+    
+}
+
+// .cp-detail-product{
+.cp-price{
+  border-left: 1px solid #e5e5e5;
+  font-size: 1.1em;
+  .price-original{
+    text-decoration-line: line-through;
+    color:#aaaaaa;
+  }
+  .price-online{
+    font-size: 1em;
+    &.big {
+      font-size: 1.5em;
+    }
+  }
+  span{
+    font-size: 0.8em;
+  }
+  .ibk{
+    color:#3dbf20;
+    span{
+      font-size: 1.2em;
+    }
+    img{
+      width: 75px;
+    }
+    .tag{
+      font-size: 14px;
+      display: inline-block;
+      position: relative;
+      background: #3dbf20;
+      color: #fff;
+      text-align: center;
+      height: 24px;
+      vertical-align: middle;
+      margin: -6px 0 0 20px;
+      border-radius: 0 4px 4px 0;
+      font-weight: 600;
+      width: 45px;
+      line-height: 25px;
+      letter-spacing: .5px;
+      &:before {
+        content: "";
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-right: 10px solid #3dbf20;
+        position: absolute;
+        left: -10px;
+        top: 0;
+      }
+    }
+  }
+}
+// }
+
 .cp-button{
   background: black !important;
   border-radius: 0.1em !important;

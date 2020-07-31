@@ -13,33 +13,50 @@ const ContShoppingBag = ({ items = {}, deleteMethod = () => { }, buyProducts = (
     let list_products = Object.keys(items)
 
     let total = list_products.length
+    let totalAmount = 0
     const listItems = list_products.map( (item, index) => {
         const { count, data} = items[item]
-        const { imageUrl, productName, sku } = data
+        const { brand = '', images = [], pickItem = {}, price = {}, localSku='' } = data
+        const { name = '', sku = '', referenceId='' } = pickItem
+        let imageUrl = images[0]
         console.log(items[item])
+        totalAmount += parseFloat(count) * parseFloat(price.Price)
         return (
             <ListGroupItem key={index}>
                 <Row>
                     <Col sm={2}>
                         <Image url={imageUrl}></Image>
                     </Col>
-                    <Col sm={6}>
+                    <Col sm={5}>
                         <h5 className='text-dark'>
-                            <Link href='/producto/[id]' as={'/producto/' + sku}>
+                            <Link href='/producto/[id]' as={'/producto/' + localSku}>
                                 <a className='text-dark'>
-                                    {productName}
+                                    {name}
                                 </a>
                             </Link>
                         </h5>
                         <p><small>SKU: {sku}</small></p>
                         <p>VÍA STORE</p>
-
                     </Col>
-                    <Col className='d-flex align-items-center' sm={2}>
+                    <Col sm={2} className='d-flex align-items-center'>
+                        <div className='cp-price border-0'>
+                            <div className='price-original'><span>S/ {price.ListPrice}</span></div>
+                            <div><h4><span>S/ {price.Price}</span></h4></div>
+                        </div>
+                    </Col>
+                    <Col className='d-flex align-items-center' sm={1}>
                         <p><strong>x {count}</strong></p> 
                     </Col>
                     <Col className='d-flex align-items-center' sm={2}>
-                        <Button className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data)}>Remover</Button>
+                        <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data, 'MINUS')}>
+                            <i className="fas fa-minus">{'  '}</i>
+                        </Button>
+                        <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data)}>
+                            <i className="fas fa-trash">{'  '}</i>
+                        </Button>
+                        <Button size='sm' className='cp-button' onClick={() => deleteMethod(null, null, data, 'PLUS')}>
+                            <i className="fas fa-plus">{'  '}</i>
+                        </Button>
                     </Col>
                 </Row>
             </ListGroupItem>
@@ -62,7 +79,7 @@ const ContShoppingBag = ({ items = {}, deleteMethod = () => { }, buyProducts = (
                             </h4>
                         </Col>
                         <Col sm={7}>
-                            <h4 className='pl-3'>S/ 0.00 </h4>
+                            <h4 className='pl-3'>S/ {Number((totalAmount).toFixed(2))}</h4>
                         </Col>
                         <Col sm={3}>
                             <Button className='cp-button hvr-pulse' onClick={() => buyProducts()}>

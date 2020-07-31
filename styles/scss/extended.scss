@@ -141,3 +141,16 @@
     display: block;
     padding-top: 100%;
 }
+
+html body {
+  .form-control {
+    &:focus {
+      color: #495057;
+      // background-color: #fff;
+      border-color: #696969;
+      outline: 0;
+      box-shadow: 0 0 0 0.2rem rgb(48 48 48 / 25%);
+    }
+  }
+
+}

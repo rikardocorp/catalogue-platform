@@ -18,20 +18,39 @@ export class index extends Component {
         isSold: false
     }
 
-    removeItem = (notify, message, item) => {
+    removeItem = (notify, message, item, option=null) => {
         let myCart = this.state.myCart
-        let itemMyCart = myCart[item.sku.toString()]
+        let sku = item.pickItem.sku
+
+        console.log(item, myCart)
+
+        let itemMyCart = myCart[sku.toString()]
+        let count = null
         if (itemMyCart) {
-            delete myCart[item.sku.toString()]
+            count = itemMyCart.count
+            if (option == 'MINUS') {
+                count -= 1
+            } else if (option == 'PLUS') {
+                count += 1
+            } else {
+                count = 0
+            }
+            myCart[sku.toString()].count = count
+            if (count == 0) {
+                delete myCart[sku.toString()]
+            }
         }
 
         this.setState({ myCart: myCart })
         localStorage.setItem('myCart', JSON.stringify(myCart));
 
-        notify(message, {
-            appearance: 'success',
-            autoDismiss: true,
-        })
+        if (notify != null && count==0) {
+            notify(message, {
+                appearance: 'success',
+                autoDismiss: true,
+            })
+        }
+        
     }
 
     componentDidMount() {
@@ -95,7 +114,6 @@ export class index extends Component {
                 <LayoutSection>
                     <ContShoppingBag items={this.state.myCart} deleteMethod={this.removeItem} buyProducts={this.buyProducts}></ContShoppingBag>
                 </LayoutSection>
-
                 <Modal
                     isOpen={this.state.showModal}
                     toggle={this.toggle}

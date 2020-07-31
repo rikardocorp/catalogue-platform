@@ -31,16 +31,6 @@ const Looks = () => {
                 </Title>
             </LayoutSection>
             <LayoutSection>
-                {/* <CatalogueListSimple 
-                    url={urlCatalogue}
-                    componentItem={ProductItem}
-                ></CatalogueListSimple> */}
-                {/* <CatalogueList
-                    keyName={looks}
-                    url={urlCatalogue}
-                    componentItem={ProductItem}
-                    className={'cp-catalogue-looks'}
-                ></CatalogueList> */}
                 <ContCatalogue 
                     keyName={looks} 
                     url={urlCatalogue}

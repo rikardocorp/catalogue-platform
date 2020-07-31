@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect }  from 'react';
 import Router, { useRouter } from 'next/router'
 import Link from 'next/link'
 import {
@@ -7,12 +7,6 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
   NavbarText,
 } from 'reactstrap';
 
@@ -21,6 +15,9 @@ const Example = (props) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
+
+  // let MYCART = JSON.parse(window.localStorage.getItem('myCart')) || {}
+  // let countProducts = Object.values(MYCART).length
 
   return (
     <div className={className}>
