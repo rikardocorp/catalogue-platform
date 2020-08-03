@@ -18,6 +18,7 @@ const DetailProductExt = ({ data = null, children = null, addCart=()=>{}, isLoad
             prod.size ? <option className='opt' key={key} value={prod.sku}>{prod.size[0]}</option> : null
         )
     })
+    products.unshift(<option className='opt' value={undefined}></option>)
 
     const { name='', sku='' } = pickItem || {}
     const productToCart = { ...data.data, pickItem, SizeId }

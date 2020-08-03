@@ -20,10 +20,11 @@ export class index extends Component {
 
     removeItem = (notify, message, item, option=null) => {
         let myCart = this.state.myCart
+        if (item.pickItem === undefined){
+            return 
+        }
         let sku = item.pickItem.sku
-
         console.log(item, myCart)
-
         let itemMyCart = myCart[sku.toString()]
         let count = null
         if (itemMyCart) {
@@ -50,7 +51,6 @@ export class index extends Component {
                 autoDismiss: true,
             })
         }
-        
     }
 
     componentDidMount() {
