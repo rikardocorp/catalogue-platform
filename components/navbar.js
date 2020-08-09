@@ -49,7 +49,7 @@ const Example = (props) => {
           </Nav>
           <NavbarText>
             <Link href='/bolsa'>
-              <span title='Bolsa de Productos' className='cp-icon-store cursor-pointer'>
+              <span id='shopBag' title='Bolsa de Productos' className='cp-icon-store cursor-pointer'>
                 <i className="fas fa-shopping-bag"></i>
               </span>
             </Link>

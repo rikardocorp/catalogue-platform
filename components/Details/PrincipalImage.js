@@ -116,10 +116,10 @@ class PrincipalImage extends Component {
             classOn = 'on'
         }
 
-        const { item = {}, item_ext={}, className='', darkMode=false, title=null} = this.props
+        const { item = {}, pickItem={}, className='', darkMode=false, title=null} = this.props
         const { bgColor, textColor, textColorInverted } = colorMode(darkMode)
         const { sku = null, productName = '', image = null, productId = null, imageId = null, link = null, imageUrl = null } = item || {}
-        const { images = [] } = item_ext || {}
+        const { images = [] } = pickItem || {}
         // const title = productName
         const categories = this.props.categories
         const version = this.props.version

@@ -1,4 +1,5 @@
-import { Container, Row, Col } from 'reactstrap'
+import React, {useState} from 'react'
+import { Container, Row, Col, Button } from 'reactstrap'
 import PrincipalImage from '../components/Details/PrincipalImage'
 import Catalogue from '../components/Catalogue/Catalogue'
 import Product from '../components/Catalogue/Product'
@@ -8,14 +9,11 @@ import DetailProductExt from '../components/Details/DetailProductExt'
 
 import useSWR from 'swr'
 import fetcher from "../lib/fetcher"
-import {Button} from 'reactstrap'
 import { URL_SEARCH_SKU, MESSAGE_ADD_CART, URL_RECOMMENDER_SAMES, TITLE_SIMILAR_PRODUCTS} from '../config/index'
 import { useToasts } from 'react-toast-notifications'
 
 const onClickNotify = (notify, localSku, message, item) => {
     // toast.notify(`Hi, I am a toast!`)
-    console.log('MY CART')
-    console.log(item)
     let myCart = JSON.parse(localStorage.getItem('myCart')) || {};
 
     console.log(message, item)
@@ -23,6 +21,7 @@ const onClickNotify = (notify, localSku, message, item) => {
     let SizeId = item.SizeId
     let msg = message
     let appearance = 'success'
+
 
     if (SizeId) {
         let itemMyCart = myCart[sku.toString()]
@@ -49,10 +48,16 @@ const onClickNotify = (notify, localSku, message, item) => {
     })
 }
 
+const onClickSetPickItem = (pickItem, item) => {
+    pickItem(item)
+}
+
 const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=null }) => {
-    console.log('ContDetailProduct')
+    const [ pickItem, setPickItem ] = useState(null)
     const { addToast } = useToasts()
-    
+    // console.log('PICK ITEM ::::::::::')
+    // console.log(pickItem)
+
     // LOAD PRINCIPAL PRODUCT 
     let query = item ? item.data : null
     if (item == null && id!= null) {
@@ -65,7 +70,6 @@ const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=nu
     let itemsRecommender = null
     let url = URL_RECOMMENDER_SAMES + sku
     const { data, error } = useSWR(url, fetcher);
-    console.log('URL_RECOMMENDER_SAMES:', url)
     if (data != undefined && data.data && data.data.skus.length > 0) {
         itemsRecommender = data.data['skus']
     }
@@ -75,17 +79,21 @@ const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=nu
             <Row className='' >
                 <Col md='5'>
                     <PrincipalImage
-                        className='animate__animated animate__slideInLeft' event_tops={() => { }}
-                        item={query} item_ext={item_ext.data}/>
+                        className='animate__animated animate__slideInLeft' event_tops={()=>{}}
+                        item={query}
+                        pickItem={item_ext.data ? pickItem : null}/>
                 </Col>
                 <Col md='7'>
                     <div className='animate__animated animate__slideInRight'>
                     {
                         item_ext == null || item_ext.data==null ? (
-                            <DetailProduct data={item} isLoading={!item_ext.status}></DetailProduct>
+                            <DetailProduct data={item} isLoading={!item_ext.status}/>
                         ) : (
-                            <DetailProductExt data={item_ext} addCart={(a, b) => onClickNotify(addToast, sku, a,b)} isLoading={!item_ext.status}>
-                            </DetailProductExt>
+                            <DetailProductExt 
+                                data={item_ext} 
+                                setPickItem={(value) => onClickSetPickItem(setPickItem, value)}
+                                addCart={(a, b) => onClickNotify(addToast, sku, a,b)}
+                                isLoading={!item_ext.status}/>
                         )
                     }
                     </div>

@@ -1,10 +1,11 @@
-const title = ({ children, className='', onClick=null}) => {
+import React from 'react'
+const title = ({ children, className='', onClick=null, contentOnClick='VER MAS'}) => {
 
     return (
         <h5 className={'cp-title mb-4 position-relative ' + className}>
             {children} 
             {
-                onClick ? <span className='cp-onclick float-right hvr-backward' onClick={onClick}>VER MAS</span> : null
+                onClick ? <div className='cp-onclick float-right hvr-backward' onClick={onClick}>{contentOnClick}</div> : null
             }
         </h5>
     );

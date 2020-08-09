@@ -25,12 +25,6 @@ const Index = () => {
         statusA = true
     }
 
-    console.log('GET DATA SHOPSTAR A')
-    console.log(statusA)
-    console.log(responseA)
-    // console.log(responseA.data, responseA.error, responseA.isValidating)
-    // console.log(queryA)
-
     let statusB = null, urlItemB = null, responseB = null, queryB = null
     urlItemB = 'https://todo-6drzojst7q-uc.a.run.app/get_shopstar_prod_by_sku/?sku=' + sku2
     statusB = false
@@ -42,13 +36,6 @@ const Index = () => {
     if (queryB != undefined && queryB.price == null) {
         queryB = undefined
     }
-    
-
-    console.log('GET DATA SHOPSTAR B')
-    console.log(statusB)
-    console.log(responseB)
-    // console.log(responseB.data, responseB.error, responseB.isValidating)
-    console.log(queryB)
 
     const response_queryA = {data: queryA, status: statusA}
     const response_queryB = {data: queryB, status: statusB}

@@ -1,5 +1,5 @@
 import { 
-    ListGroup, ListGroupItem, Row, Col, Button, Jumbotron, Container, 
+    ListGroup, ListGroupItem, Row, Col, Button, Jumbotron, Container, Form
 } from 'reactstrap'
 import Image from '../components/image'
 import { useToasts } from 'react-toast-notifications'
@@ -7,7 +7,7 @@ import { MESSAGE_REMOVE_CART} from '../config'
 import Link from 'next/link'
 
 
-const ContShoppingBag = ({ items = {}, deleteMethod = () => { }, buyProducts = () => { }}) => {
+const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null}) => {
 
     const { addToast } = useToasts()
     let list_products = Object.keys(items)
@@ -49,17 +49,22 @@ const ContShoppingBag = ({ items = {}, deleteMethod = () => { }, buyProducts = (
                         <Col className='d-flex align-items-center' sm={1}>
                             <p><strong>x {count}</strong></p>
                         </Col>
-                        <Col className='d-flex align-items-center' sm={2}>
-                            <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data, 'MINUS')}>
-                                <i className="fas fa-minus">{'  '}</i>
-                            </Button>
-                            <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data)}>
-                                <i className="fas fa-trash">{'  '}</i>
-                            </Button>
-                            <Button size='sm' className='cp-button' onClick={() => deleteMethod(null, null, data, 'PLUS')}>
-                                <i className="fas fa-plus">{'  '}</i>
-                            </Button>
-                        </Col>
+                        {
+                            deleteMethod != null ? (
+                                <Col className='d-flex align-items-center' sm={2}>
+                                    <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data, 'MINUS')}>
+                                        <i className="fas fa-minus">{'  '}</i>
+                                    </Button>
+                                    <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data)}>
+                                        <i className="fas fa-trash">{'  '}</i>
+                                    </Button>
+                                    <Button size='sm' className='cp-button' onClick={() => deleteMethod(null, null, data, 'PLUS')}>
+                                        <i className="fas fa-plus">{'  '}</i>
+                                    </Button>
+                                </Col>
+                            ) : null
+                        }
+                        
                     </Row>
                 </ListGroupItem>
             )
@@ -76,22 +81,30 @@ const ContShoppingBag = ({ items = {}, deleteMethod = () => { }, buyProducts = (
             </ListGroup>
             {
                 total > 0 ? (
-                    <Row className='mt-5 mb-4'>
-                        <Col sm={2}>
-                            <h4 className='text-right'>
-                                <strong>TOTAL</strong>
-                            </h4>
-                        </Col>
-                        <Col sm={7}>
-                            <h4 className='pl-3'>S/ {Number((totalAmount).toFixed(2))}</h4>
-                        </Col>
-                        <Col sm={3}>
-                            <Button className='cp-button hvr-pulse' onClick={() => buyProducts()}>
-                                <i className="fas fa-shopping-bag">{'  '}</i>
-                                <span>   COMPRAR</span>
-                            </Button>
-                        </Col>
-                    </Row>
+                    <>
+                        {
+                            buyProducts !=null ? (
+                                <Row className='mt-5 mb-4'>
+                                    <Col sm={2}>
+                                        <h4 className='text-right'>
+                                            <strong>TOTAL</strong>
+                                        </h4>
+                                    </Col>
+                                    <Col sm={7}>
+                                        <h4 className='pl-3'>S/ {Number((totalAmount).toFixed(2))}</h4>
+                                    </Col>
+                                    <Col sm={3}>
+                                        <Form id='formBuyProduct' onSubmit={(e) => buyProducts(e, addToast)}>
+                                            <Button id='buyProducts' className='cp-button' type='submit'>
+                                                <i className="fas fa-shopping-bag">{'  '}</i>
+                                                <span>   COMPRAR</span>
+                                            </Button>
+                                        </Form>
+                                    </Col>
+                                </Row>
+                            ) : null
+                        }
+                    </>
                 ) : (
                     <div className='cp-no-cart'>
                         <Jumbotron fluid className='bg-light'>

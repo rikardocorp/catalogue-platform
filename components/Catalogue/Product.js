@@ -59,7 +59,7 @@ const Product = ({ data, colSizes=null, replaceLink=false}) => {
 
     return (
         <Col {...configCols} className='hvr-float'>
-            <article onClick={() => handler(sku, replaceLink)} className='cp-product cursor-pointer mb-4 box-shadow animate__animated animate__flipInX'>
+            <article id={'similar-'+ sku} onClick={() => handler(sku, replaceLink)} className='cp-product cursor-pointer mb-4 box-shadow animate__animated animate__flipInX'>
                 <div className='cp-icons z-10'>
                     <span className='cp-icon-store cursor-pointer'>
                         <i className={loading}></i>
@@ -69,18 +69,6 @@ const Product = ({ data, colSizes=null, replaceLink=false}) => {
                 <div className='square-box' style={newStyle}></div>
                 {/* <CardImg top width="100%" src={imageUrl} width={widthImage} style={styleImage} alt="Card image cap" /> */}
             </article>
-            {/* <article className='cp-product mb-4 box-shadow animate__animated animate__flipInX'>
-                <div className='cp-icons'>
-                    <Link href='/looks/[id]' as={'/looks/' + sku}>
-                        <span className='cp-icon-store'>
-                            <i className="fas fa-shopping-bag"></i>
-                        </span>
-                    </Link>
-                </div>
-                <div className='boxing' style={styleBox}></div>
-                <div className='square-box' style={newStyle}></div>
-                <CardImg top width="100%" src={imageUrl} width={widthImage} style={styleImage} alt="Card image cap" />
-            </article> */}
         </Col>
     )
 }

@@ -4,18 +4,28 @@ import Layout, { siteTitle } from '../../components/Layouts/LayoutA'
 import LayoutSection from '../../components/Layouts/LayoutSection'
 import Title from '../../components/Catalogue/Title'
 import ContShoppingBag from '../../containers/ContShoppingBag'
+import { useToasts, ToastProvider, withToastManager } from 'react-toast-notifications'
 import { TITLE_BAG } from '../../config'
 import Router, { useRouter } from 'next/router'
+import axios from '../../lib/axios'
+import moment from 'moment-timezone'
+import {URL_CHECKOUT} from '../../config/index'
 import {
     Button, Modal, ModalHeader, ModalBody, ModalFooter, Input
 } from 'reactstrap'
 
-export class index extends Component {
+
+class index extends Component {
 
     state = {
         myCart: {},
         showModal: false,
-        isSold: false
+        isSold: false,
+        isLoading: false
+    }
+
+    static async getInitialProps(ctx) {
+        return { example: '' }
     }
 
     removeItem = (notify, message, item, option=null) => {
@@ -54,19 +64,83 @@ export class index extends Component {
     }
 
     componentDidMount() {
-        let MYCART = JSON.parse(localStorage.getItem('myCart')) || {}
+        const MYCART = JSON.parse(localStorage.getItem('myCart')) || {}
+        const checkout = JSON.parse(localStorage.getItem('checkout')) || null
+
         this.setState({
-            myCart: MYCART
+            myCart: MYCART,
+            checkout: checkout,
         })
     }
 
-    buyProducts = () => {
-        console.log('buyProducts')
+    buyProducts = (e, addToast) => {
+
+        e.preventDefault()
+        // const { addToast } = useToasts()
+
+        let MYBUYS = JSON.parse(localStorage.getItem('myBuys')) || {}
+        const myCart = this.state.myCart
+        const codes = Object.keys(this.state.myCart)
+        let totalAmount = 0
+        const products = codes.map(x => {
+            let cart = myCart[x]
+            totalAmount += parseFloat(cart.count) * parseFloat(cart.data.price.Price)
+            return {
+                productId: x.toString(),
+                quantity: myCart[x].count
+            }
+        })
+
+        const params = { items: products }
+        this.setState({isLoading: true})
+        axios.post(URL_CHECKOUT, params).then( resp => {
+            console.log(resp)
+            let newBuy = {}
+            if (resp.status){
+                let url = resp.content
+                let id = resp.content.split('checkout/')[1]
+                let now = moment()
+                newBuy = { 
+                    url: url, 
+                    date: now.tz('America/Lima').format('DD/MM/YYYY hh:mm:ss'),
+                    cart: myCart,
+                    amount: totalAmount,
+                    total: codes.length
+                }
+                MYBUYS[id] = newBuy
+                console.log(MYBUYS)
+                localStorage.setItem('myBuys', JSON.stringify(MYBUYS));
+                this.resetCart(url)
+            } else {
+                let msg = 'Ocurrio un error en la compra, vuelva a intentar.'
+                let appearance = 'info'
+                addToast(msg, {
+                    appearance: appearance,
+                    autoDismiss: true,
+                });
+                this.setState({ isLoading: false })
+            }
+
+        }).catch(e => {
+            let msg = 'Ocurrio un error en la compra, vuelva a intentar.'
+            let appearance = 'info'
+            addToast(msg, {
+                appearance: appearance,
+                autoDismiss: true,
+            });
+            this.setState({ isLoading: false })
+        })
+    }
+
+    resetCart = (checkout) => {
         this.toggle()
-        // localStorage.removeItem('myCart')
-        // this.setState({
-        //     myCart: {}
-        // })
+        localStorage.removeItem('myCart')
+        localStorage.removeItem('checkout')
+        this.setState({
+            myCart: {},
+            checkout: checkout,
+            isLoading: false
+        })
     }
 
     toggle = () => {
@@ -97,11 +171,12 @@ export class index extends Component {
         }
     }
 
+
     render() {
         console.log('render toggle')
 
         return (
-            <Layout>
+            <Layout isLoading={this.state.isLoading}>
                 <Head>
                     <title>{siteTitle}</title>
                 </Head>
@@ -109,6 +184,11 @@ export class index extends Component {
                     <Title className='pt-4 text-uppercase'>
                         <span className='cursor-pointer pr-2 hvr-backward' onClick={() => Router.push('/')}><i className="fas fa-chevron-left"></i> </span>
                         <span> {TITLE_BAG}</span>
+                        <div className='cp-onclick float-right'>
+                            <Button size='sm' className='cp-button' onClick={() => {Router.push('/compras')}}>
+                                MIS COMPRAS
+                            </Button>
+                        </div>
                     </Title>
                 </LayoutSection>
                 <LayoutSection>
@@ -120,7 +200,6 @@ export class index extends Component {
                     onClosed={this.exitModal}
                     modalClassName='cp-modal cp-modal-bag d-flex align-items-center'
                     contentClassName='bg-black text-white'>
-                    {/* <ModalHeader close={<button className="close" onClick={this.toggle}>&times;</button>}>Modal title</ModalHeader> */}
                     <ModalBody>
                         <div className='mx-5 text-center color-white'>
                             <h1><strong>anna</strong></h1>
@@ -140,8 +219,17 @@ export class index extends Component {
                                     <>
                                         <h5 className='px-3'>ESTAMOS TRABAJANDO PARA TRAERTE LA MEJOR EXPERIENCIA.</h5>
                                         <br></br>
-                                        {/* <br></br> */}
+
                                         <p className='px-2'>
+                                            <span>Ahora puedes ingresar a <strong>"Mis Compras"</strong> o hacer clic en <strong>"IR a PAGAR"</strong> para completar tu compra</span>
+                                        </p>
+                                        <p>
+                                            <Button type='submit' className='rounded-0'>
+                                                <a className='color-white' target='BLANK' href={this.state.checkout}>IR A PAGAR</a>
+                                            </Button>
+                                        </p>
+
+                                        {/* <p className='px-2'>
                                             <strong>Deja tu correo electrónico para ser el primero en enterarte</strong>
                                         </p>
                                         <form onSubmit={this.handleSubmit}>
@@ -151,7 +239,7 @@ export class index extends Component {
                                             <p>
                                                 <Button type='submit' className='rounded-0'>Enviar</Button>
                                             </p>
-                                        </form>
+                                        </form> */}
                                         
                                         <br></br>
                                     </>
@@ -160,10 +248,6 @@ export class index extends Component {
                             
                         </div>
                     </ModalBody>
-                    {/* <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                    </ModalFooter> */}
                 </Modal>
 
             </Layout>
@@ -172,3 +256,4 @@ export class index extends Component {
 }
 
 export default index
+// export default index

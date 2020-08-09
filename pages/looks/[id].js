@@ -26,7 +26,7 @@ const Index = () => {
                     <span> {TITLE_SELECT_LOOKS}</span>
                 </Title>
             </LayoutSection>
-            <ContDetailLook sku={id}></ContDetailLook>
+            <ContDetailLook sku={id} className='cp-looks'></ContDetailLook>
             {/* <DetailLook></DetailLook> */}
         </Layout>
     )
