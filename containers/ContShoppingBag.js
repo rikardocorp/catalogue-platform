@@ -4,6 +4,8 @@ import {
 import Image from '../components/image'
 import { useToasts } from 'react-toast-notifications'
 import { MESSAGE_REMOVE_CART} from '../config'
+import ContEmpty from '../components/Empty/ContEmpty'
+
 import Link from 'next/link'
 
 
@@ -74,51 +76,37 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
 
     return (
         <section>
-            <ListGroup flush>
+            <ContEmpty isEmpty={total == 0} message='Aun no tiene productos en la bolsa.'>
                 {
-                    listItems
+                    buyProducts != null ? (
+                        <>
+                            <ListGroup flush>
+                                {
+                                    listItems
+                                }
+                            </ListGroup>
+                            <Row className='mt-5 mb-4'>
+                                <Col sm={2}>
+                                    <h4 className='text-right'>
+                                        <strong>TOTAL</strong>
+                                    </h4>
+                                </Col>
+                                <Col sm={7}>
+                                    <h4 className='pl-3'>S/ {Number((totalAmount).toFixed(2))}</h4>
+                                </Col>
+                                <Col sm={3}>
+                                    <Form id='formBuyProduct' onSubmit={(e) => buyProducts(e, addToast)}>
+                                        <Button id='buyProducts' className='cp-button' type='submit'>
+                                            <i className="fas fa-shopping-bag">{'  '}</i>
+                                            <span>   COMPRAR</span>
+                                        </Button>
+                                    </Form>
+                                </Col>
+                            </Row>
+                        </>
+                    ) : null
                 }
-            </ListGroup>
-            {
-                total > 0 ? (
-                    <>
-                        {
-                            buyProducts !=null ? (
-                                <Row className='mt-5 mb-4'>
-                                    <Col sm={2}>
-                                        <h4 className='text-right'>
-                                            <strong>TOTAL</strong>
-                                        </h4>
-                                    </Col>
-                                    <Col sm={7}>
-                                        <h4 className='pl-3'>S/ {Number((totalAmount).toFixed(2))}</h4>
-                                    </Col>
-                                    <Col sm={3}>
-                                        <Form id='formBuyProduct' onSubmit={(e) => buyProducts(e, addToast)}>
-                                            <Button id='buyProducts' className='cp-button' type='submit'>
-                                                <i className="fas fa-shopping-bag">{'  '}</i>
-                                                <span>   COMPRAR</span>
-                                            </Button>
-                                        </Form>
-                                    </Col>
-                                </Row>
-                            ) : null
-                        }
-                    </>
-                ) : (
-                    <div className='cp-no-cart'>
-                        <Jumbotron fluid className='bg-light'>
-                            <Container fluid>
-                                <h4 className="display-3 text-center">
-                                    <i className="fas fa-shopping-bag">{'  '}</i>
-                                    <strong>    anna</strong> <small>te espera!!</small>
-                                </h4>
-                                <p className="lead text-center">Aun no tiene productos en la bolsa.</p>
-                            </Container>
-                        </Jumbotron>
-                    </div>
-                )
-            }
+            </ContEmpty>
             
         </section>
         

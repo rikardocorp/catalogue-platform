@@ -186,7 +186,7 @@ class index extends Component {
                         <span> {TITLE_BAG}</span>
                         <div className='cp-onclick float-right'>
                             <Button size='sm' className='cp-button' onClick={() => {Router.push('/compras')}}>
-                                MIS COMPRAS
+                                MIS BOLSAS DE COMPRAS
                             </Button>
                         </div>
                     </Title>

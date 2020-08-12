@@ -4,6 +4,7 @@ import Router, { useRouter } from 'next/router'
 import Layout, { siteTitle } from '../../components/Layouts/LayoutA'
 import LayoutSection from '../../components/Layouts/LayoutSection'
 import Title from '../../components/Catalogue/Title'
+import ContEmpty from '../../components/Empty/ContEmpty'
 import ContDetailProduct from '../../containers/ContDetailProduct'
 
 import { process_product_external } from '../../lib/utils'
@@ -40,7 +41,6 @@ const Index = () => {
     const response_queryA = {data: queryA, status: statusA}
     const response_queryB = {data: queryB, status: statusB}
 
-
     return (  
         <Layout darkMode={false}>
             <Head>
@@ -52,10 +52,13 @@ const Index = () => {
                     <span className='text-capitalize'> {item_key_features}</span>
                 </Title>
             </LayoutSection>
-
+            
             <LayoutSection>
-                <ContDetailProduct item={response_queryA} item_ext={response_queryB}></ContDetailProduct>
+                <ContEmpty isEmpty={queryA==undefined} message={'Este producto no se encuentra disponible.'}>
+                    <ContDetailProduct item={response_queryA} item_ext={response_queryB}></ContDetailProduct>
+                </ContEmpty>
             </LayoutSection>
+
         </Layout>
     );
 }

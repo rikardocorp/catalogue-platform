@@ -46,7 +46,6 @@ export class index extends Component {
     }
 
     render() {
-
         return (
             <Layout>
                 <Head>

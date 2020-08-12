@@ -14,11 +14,7 @@ const DetailProductExt = ({ data = null, children = null, addCart = () => { }, i
     if (setPickItem != null) {
         setPickItem(pickItem)
     }
-    // console.log('itemsList:', itemsList)
-    // console.log('pickItem:', pickItem)
 
-    // console.log('DetailProductExt:', Object.values(items))
-    // console.log('Pick Item', pickItem)
     const products = itemsList.map((prod, key) => {
         console.log(key, prod)
         return (
@@ -29,6 +25,8 @@ const DetailProductExt = ({ data = null, children = null, addCart = () => { }, i
     const { name='', sku='' } = pickItem || {}
     const productToCart = { ...data.data, pickItem, SizeId }
     delete productToCart['items']
+    // NO MOSTRAR DESCUENTO INTERCORP
+    price.PriceIBK = null
     return (
         <div className='cp-detail-product'>
             <span>{brand}</span>

@@ -42,11 +42,12 @@ export const BANNER_BOTTOM = [
   {
     src: '/images/banner2-web.png',
     altText: 'Slide 1',
-    caption: <span>y te enseñamos las prendas que tenemos para tí!!!</span>,
-    header: (<p>
-              <span>¡SUBE UNA FOTO DEL</span> <br/> 
-              <span>LOOK QUE QUIERAS!</span>
-          </p>),
+    caption: '',
+    // caption: <span>y te enseñamos las prendas que tenemos para tí!!!</span>,
+    // header: (<p>
+    //           <span>¡SUBE UNA FOTO DEL</span> <br/> 
+    //           <span>LOOK QUE QUIERAS!</span>
+    //       </p>),
     key: '1'
   }
 ];
@@ -85,7 +86,7 @@ export const ITEMS_CATEGORIES = [
 ]
 
 // SERVICES URL
-export const URL_INDEX_RECOMMENDER = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_look_and_gender?look=URBANO&gender=MUJER&limit=4&offset=97'
+export const URL_INDEX_RECOMMENDER = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_look_and_gender?look=URBANO&gender=MUJER&limit=4&offset=27'
 export const URL_CATALOGUE_LOOK = 'https://todo-6drzojst7q-uc.a.run.app/skus_by_look_and_gender?look={0}&gender=MUJER&limit=20&offset=0'
 export const URL_SEARCH_SKU = 'https://todo-6drzojst7q-uc.a.run.app/skus/'
 // export const URL_RECOMMENDER_SAMES = 'https://piloto-druid-spsa.appspot.com/ver1/v11/sku_cross/'

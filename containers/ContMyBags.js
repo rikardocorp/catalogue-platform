@@ -3,6 +3,8 @@ import {
 } from 'reactstrap'
 import React, { useState } from 'react'
 import Image from '../components/image'
+import ContEmpty from '../components/Empty/ContEmpty'
+
 import { useToasts } from 'react-toast-notifications'
 import { MESSAGE_REMOVE_CART } from '../config'
 import Link from 'next/link'
@@ -98,27 +100,15 @@ const ContMyBags = ({ items = {}}) => {
 
     return (
         <section>
-            {
-                listItems.length > 0 ? (
-                    <ListGroup flush>
-                        {
-                            listItems
-                        }
-                    </ListGroup>
-                ) : (
-                    <div className='cp-no-cart'>
-                        <Jumbotron fluid className='bg-light'>
-                            <Container fluid>
-                                <h4 className="display-3 text-center">
-                                    <i className="fas fa-shopping-bag">{'  '}</i>
-                                    <strong>    anna</strong> <small>te espera!!</small>
-                                </h4 >
-                                <p className="lead text-center">Aun no tienes compras procesadas.</p>
-                            </Container >
-                        </Jumbotron >
-                    </div >
-                )
-            }
+            <ContEmpty isEmpty={listItems.length == 0} message={'Aun no tienes compras procesadas.'}>
+                <ListGroup flush>
+                    {
+                        listItems
+                    }
+                </ListGroup>
+
+            </ContEmpty>
+           
             <Modal
                 isOpen={OpenModal}
                 size={'lg'}
