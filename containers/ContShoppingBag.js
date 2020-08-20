@@ -26,7 +26,7 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
         if (sku != null) {
             totalAmount += parseFloat(count) * parseFloat(price.Price)
             content = (
-                <ListGroupItem key={index}>
+                <ListGroupItem id={'bolsa_item_' + sku} key={index}>
                     <Row>
                         <Col sm={2}>
                             <Image url={imageUrl}></Image>
@@ -53,14 +53,14 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
                         </Col>
                         {
                             deleteMethod != null ? (
-                                <Col className='d-flex align-items-center' sm={2}>
-                                    <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data, 'MINUS')}>
+                                <Col className='d-flex align-items-center cp-options-bag-item' sm={2}>
+                                    <Button size='sm' className='cp-button cp-options-minus' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data, 'MINUS')}>
                                         <i className="fas fa-minus">{'  '}</i>
                                     </Button>
-                                    <Button size='sm' className='cp-button' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data)}>
+                                    <Button size='sm' className='cp-button cp-options-remove' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data)}>
                                         <i className="fas fa-trash">{'  '}</i>
                                     </Button>
-                                    <Button size='sm' className='cp-button' onClick={() => deleteMethod(null, null, data, 'PLUS')}>
+                                    <Button size='sm' className='cp-button cp-options-plus' onClick={() => deleteMethod(null, null, data, 'PLUS')}>
                                         <i className="fas fa-plus">{'  '}</i>
                                     </Button>
                                 </Col>
@@ -80,7 +80,7 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
                 {
                     buyProducts != null ? (
                         <>
-                            <ListGroup flush>
+                            <ListGroup className='cp-bolsa-items' flush>
                                 {
                                     listItems
                                 }

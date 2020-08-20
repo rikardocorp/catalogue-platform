@@ -13,12 +13,12 @@ const fallback = (
 );
 
 const ContCatalogue = ({ keyName, url, componentItem=null, className=''}) => {
-    console.log('CONT CATALOGUE')
-    console.log(keyName, url, componentItem, className)
+    // console.log('CONT CATALOGUE')
+    // console.log(keyName, url, componentItem, className)
     const aux = !isServer ? '1' : '2'
-    console.log('............')
-    console.log(aux)
-    console.log('............')
+    // console.log('............')
+    // console.log(aux)
+    // console.log('............')
     return (  
         <>
             {!isServer ? (

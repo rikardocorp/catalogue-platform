@@ -191,10 +191,11 @@ class index extends Component {
                         </div>
                     </Title>
                 </LayoutSection>
-                <LayoutSection>
+                <LayoutSection id='bolsa'>
                     <ContShoppingBag items={this.state.myCart} deleteMethod={this.removeItem} buyProducts={this.buyProducts}></ContShoppingBag>
                 </LayoutSection>
                 <Modal
+                    id='bolsa_modal'
                     isOpen={this.state.showModal}
                     toggle={this.toggle}
                     onClosed={this.exitModal}

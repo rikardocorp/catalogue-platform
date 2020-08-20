@@ -21,12 +21,11 @@ const ContMyBags = ({ items = {}}) => {
     let list_bags = Object.values(items)
 
     const listItems = list_bags.reverse().map((item, index) => {
-        console.log(item)
         let content = null
         if (item) {
             const {url, date, amount, cart, total} = item
             content = (
-                <ListGroupItem key={index} className='py-4'>
+                <ListGroupItem id={'compra_item_' + index} key={index} className='py-4'>
                     <Row>
                         <Col sm={1}>
                             <h5><strong>#{index + 1}</strong></h5>
@@ -44,10 +43,10 @@ const ContMyBags = ({ items = {}}) => {
                         </Col>
                         <Col className='' sm={3}>
                             <div className='float-right'>
-                                <Button size='sm' className='cp-button mr-2' onClick={() => { setMyCart(cart); setOpenModal(true)}}>
+                                <Button size='sm' className='cp-detail-purchase cp-button mr-2' onClick={() => { setMyCart(cart); setOpenModal(true)}}>
                                     <i className="fas fa-shopping-bag">{'  '}</i>
                                 </Button>
-                                <Button size='sm' className='cp-button'>
+                                <Button size='sm' className='cp-button cp-checkout'>
                                     <a className='color-white' href={url} target='BLANK'>CHECKOUT</a>
                                 </Button>
                             </div>
@@ -110,6 +109,7 @@ const ContMyBags = ({ items = {}}) => {
             </ContEmpty>
            
             <Modal
+                id='Purchase_Modal'
                 isOpen={OpenModal}
                 size={'lg'}
                 toggle={() => { setOpenModal(!OpenModal) }}

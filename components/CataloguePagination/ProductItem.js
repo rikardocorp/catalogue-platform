@@ -14,11 +14,12 @@ const handler = (sku) => {
     Router.push('/looks/[id]', '/looks/' + sku)
 }
 
-const ProductItem = ({ index, data }) => {
+const ProductItem = ({ index, data, sufix=null }) => {
 
     let { sku = '', imageUrl = '', productName = '' } = data
+    const id = sufix ? sufix + '_' + sku : null
     return (
-        <Col xs={{ size: 8, offset: 2 }} sm={{ size: 6, offset: 0 }} md={4} lg={3} className='animate__animated animate__flipInX'>
+        <Col id={id} xs={{ size: 8, offset: 2 }} sm={{ size: 6, offset: 0 }} md={4} lg={3} className='animate__animated animate__flipInX'>
             <Card className='cp-product mb-4 box-shadow' onClick={()=> handler(sku)}>
                 {/* <Img className='card-img-top' src={imageUrl} alt={sku}></Img> */}
                 <CardImg top width="100%" src={imageUrl} alt="Card image cap" />

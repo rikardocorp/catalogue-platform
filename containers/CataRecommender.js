@@ -20,6 +20,7 @@ const CataRecommender = (props) => {
     return (
         <section>
             <Catalogue
+                id='principal_recommender'
                 typeCard={'deck'}
                 items={items}
                 componentItem={Product}

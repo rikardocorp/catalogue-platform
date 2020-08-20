@@ -12,8 +12,8 @@ export const Fallback = ({ children }) => {
 
 const CatalogueList = ({ keyName='default', url='', componentItem=null, className=''}) => {
 
-    console.log('CATLOGUE LIST')
-    console.log(keyName, url, className)
+    // console.log('CATLOGUE LIST')
+    // console.log(keyName, url, className)
     // const [urlstorage, setUrlstorage] = useState('')
     const URL = url && url.split('?')[0]
     const storageList = `${keyName}-list`
@@ -33,7 +33,7 @@ const CatalogueList = ({ keyName='default', url='', componentItem=null, classNam
 
             const results = response.data;
             return results.map((result, index) => (
-                <ProductComponent key={index} index={index} data={result} />
+                <ProductComponent sufix={'look'} key={index} index={index} data={result} />
             ));
         },
         SWR => {

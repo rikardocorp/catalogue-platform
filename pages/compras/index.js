@@ -57,13 +57,13 @@ export class index extends Component {
                         <span> {TITLE_MY_BAGS}</span>
                     </Title>
                 </LayoutSection>
-                <LayoutSection>
+                <LayoutSection id='myPurchases'>
                     <ContMyBags items={this.state.myBuys}></ContMyBags>
                     <Row className='mt-5 mb-4'>
                         <Col sm={6}>
                         </Col>
                         <Col sm={6} className='text-right'>
-                            <Button id='buyProducts' className='cp-button d-inline' onClick={() => this.cleanHistory()}>
+                            <Button id='btnCleanHistory' className='cp-button d-inline' onClick={() => this.cleanHistory()}>
                                 <i className="fas fa-trash-alt">{'  '}</i>
                                 <span> LIMPIAR HISTORIAL</span>
                             </Button>

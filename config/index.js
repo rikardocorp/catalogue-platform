@@ -56,7 +56,7 @@ export const BANNER_BOTTOM = [
 export const LOOK_URBANO = {key:'URBANO', text:'URBANOS'}
 export const LOOK_ELEGANTES = {key:'ELEGANTE', text:'ELEGANTES'}
 export const LOOK_CASUALES = { key:'CASUAL', text:'CASUALES'}
-export const LOOK_DEPORTIVOS = { key:'SPORT', text: 'DEPORTIVOS'}
+export const LOOK_DEPORTIVOS = { key:'COMFORT', text: 'COMFORT'}
 
 export const ITEMS_CATEGORIES = [
   {

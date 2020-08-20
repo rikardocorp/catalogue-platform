@@ -20,7 +20,7 @@ const ProductCategory = ({data}) => {
 
     let {id=0, src='', link='', look=''} = data
     return (
-        <Card onClick={() => handler(look.key)} className='cp-product-category mb-4 box-shadow hvr-float cursor-pointer animate__animated animate__flipInX'>
+        <Card id={look.key} onClick={() => handler(look.key)} className='cp-product-category mb-4 box-shadow hvr-float cursor-pointer animate__animated animate__flipInX'>
             <CardImg top width="100%" src={src} alt="Card image cap" />
             <CardTitle>{look.text}</CardTitle>
         </Card>
