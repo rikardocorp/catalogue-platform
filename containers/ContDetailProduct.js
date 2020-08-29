@@ -16,7 +16,6 @@ const onClickNotify = (notify, localSku, message, item) => {
     // toast.notify(`Hi, I am a toast!`)
     let myCart = JSON.parse(localStorage.getItem('myCart')) || {};
 
-    console.log(message, item)
     let sku = item.pickItem.sku
     let SizeId = item.SizeId
     let msg = message
@@ -25,8 +24,6 @@ const onClickNotify = (notify, localSku, message, item) => {
 
     if (SizeId) {
         let itemMyCart = myCart[sku.toString()]
-        console.log(sku)
-        console.log(itemMyCart)
 
         if (itemMyCart) {
             itemMyCart.count = itemMyCart.count + 1
@@ -40,8 +37,6 @@ const onClickNotify = (notify, localSku, message, item) => {
         appearance = 'info'
     }
 
-    console.log(myCart)
-    // let myCart = 
     notify(msg, {
         appearance: appearance,
         autoDismiss: true,
@@ -55,8 +50,6 @@ const onClickSetPickItem = (pickItem, item) => {
 const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=null }) => {
     const [ pickItem, setPickItem ] = useState(null)
     const { addToast } = useToasts()
-    // console.log('PICK ITEM ::::::::::')
-    // console.log(pickItem)
 
     // LOAD PRINCIPAL PRODUCT 
     let query = item ? item.data : null

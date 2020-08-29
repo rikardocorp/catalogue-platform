@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import useSWR, { useSWRPages } from "swr";
-import fetcher from "../../lib/fetcher";
-import ProductItemDefault from "./ProductItemDefault";
-import useOnScreen from "./UseOnScreen";
+import useSWR, { useSWRPages } from "swr"
+import fetcher from "../../lib/fetcher"
+import ProductItemDefault from "./ProductItemDefault"
+import useOnScreen from "./UseOnScreen"
 import Loading from '../../components/loading'
-import {CardColumns, CardDeck, CardGroup, Button} from 'reactstrap'
+import { CardGroup } from 'reactstrap'
 
 export const Fallback = ({ children }) => {
     return <CardGroup>{children}</CardGroup>;
@@ -12,41 +12,21 @@ export const Fallback = ({ children }) => {
 
 const CatalogueList = ({ keyName='default', url='', componentItem=null, className=''}) => {
 
-    // console.log('CATLOGUE LIST')
-    // console.log(keyName, url, className)
-    // const [urlstorage, setUrlstorage] = useState('')
-    const URL = url && url.split('?')[0]
+    // const URL = url && url.split('?')[0]
     const storageList = `${keyName}-list`
     const ProductComponent = componentItem ? componentItem : ProductItemDefault
     const { pages, isLoadingMore, isReachingEnd, loadMore } = useSWRPages(
         storageList,
         ({ offset, withSWR }) => {
             const urlLocal = offset || url;
-            console.log('useSWRPages')
-            console.log(url)
-            console.log(urlLocal)
-
             const { data: response } = withSWR(useSWR(urlLocal, fetcher, { suspense: true }));
-
-            console.log(response, isReachingEnd)
             if (!response) return null;
-
             const results = response.data;
             return results.map((result, index) => (
                 <ProductComponent sufix={'look'} key={index} index={index} data={result} />
             ));
         },
-        SWR => {
-            console.log('SWR')
-            if (SWR.data.next){
-                const slices = SWR.data.next.split('?')
-                const options = slices.length == 2 ? slices[1] : ''
-                console.log(URL + '?' + options)
-                return SWR.data.next//URL + '?' + options
-            } else {
-                return SWR.data.next
-            }
-        },
+        (SWR) => SWR.data.next,
         []
     );
 
@@ -56,7 +36,6 @@ const CatalogueList = ({ keyName='default', url='', componentItem=null, classNam
     const isOnScreen = useOnScreen($loadMoreButton, "200px");
 
     React.useEffect(() => {
-        console.log('::: React.useEffect :::')
         if (!infiniteScrollEnabled || !isOnScreen) return;
 
         loadMore();

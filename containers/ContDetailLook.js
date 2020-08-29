@@ -7,12 +7,12 @@ import fetcher from "../lib/fetcher"
 import Product from '../components/Catalogue/Product'
 
 import { Container, Row, Col } from 'reactstrap'
-import { CATEGORIES, URL_RECOMMENDER_CROSS, URL_SEARCH_SKU } from '../config/index'
+import { CATEGORIES as CAT, URL_RECOMMENDER_CROSS, URL_SEARCH_SKU } from '../config/index'
+
+const CATEGORIES = Object.values(CAT)
 
 const ViewMore = (key, data, setData, change, setChange) => {
     data[key] = !data[key]
-    console.log('ViewMore')
-    console.log(data)
     setData(data)
     setChange(!change)
 }
@@ -42,13 +42,16 @@ const ContDetailLook = ({sku=null, className=''}) => {
         <Container fluid className={className}>
             <Row className='' >
                 <Col xs={{ size: 8, offset: 2 }} md={{ size: 5, offset: 0 }} lg={{ size: 4, offset: 1 }}
-                    className={"h-100-header-bar m-height-header-bar position-sm-relative position-xs-relative py-1 d-flex align-items-center justify-content-center fixed-top z-0 pl-lg-5"}>
-                    <PrincipalImage
-                        title='LOOK SELECCIONADO'
-                        className='p-4 animate__animated animate__slideInRight' event_tops={() => { }}
-                        item={query} categories={CATEGORIES} />
+                    className={"cp-looks-left h-100-header-bar m-height-header-bar position-sm-relative position-xs-relative py-1 d-flex align-items-center justify-content-center fixed-top z-0 pl-lg-5"}>
+                    <div>
+                        <PrincipalImage
+                            title='LOOK SELECCIONADO'
+                            className='p-4 animate__animated animate__slideInRight' event_tops={() => { }}
+                            item={query} categories={CATEGORIES} withIcon={true} />
+                    </div>
+
                 </Col>
-                <Col xs={12} md={{ size: 7, offset: 5 }} lg={{ size: 6, offset: 5 }} className={"py-2 pr-lg-5"}>
+                <Col xs={12} md={{ size: 7, offset: 5 }} lg={{ size: 6, offset: 5 }} className={"cp-looks-right py-2 pr-lg-5"}>
                     {contentCategories}
                 </Col>
             </Row>
@@ -63,16 +66,14 @@ const RecommenderCategories = (recommenderData, STORAGE, SETSTORAGE, CHANGE, SET
     if (recommenderData) {
         categories.map((cat, index) => {
             let key = cat['key']
-            let text = cat['text']
+            let text = cat['text'] 
             if (recommenderData[key] != null) {
                 let data = recommenderData[key].data
-                console.log('RecommenderCategories:')
-                console.log(STORAGE[key])
-                data = !STORAGE[key] ? data.slice(0,3) : data
-                console.log(data)
+                data = !STORAGE[key] ? data.slice(0,4) : data
                 let key_name = recommenderData[key].id
                 contentCategories.push(
                     <Catalogue key={index} id={key_name} typeCard={'deck'} items={data}
+                        colSizes={{ md: 3 }}
                         componentItem={Product}
                         viewMore={() => ViewMore(key, STORAGE, SETSTORAGE, CHANGE, SETCHANGE)}
                         title={text} className='cp-catalogue-products'>

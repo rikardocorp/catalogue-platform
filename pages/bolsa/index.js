@@ -34,7 +34,6 @@ class index extends Component {
             return 
         }
         let sku = item.pickItem.sku
-        console.log(item, myCart)
         let itemMyCart = myCart[sku.toString()]
         let count = null
         if (itemMyCart) {
@@ -94,7 +93,6 @@ class index extends Component {
         const params = { items: products }
         this.setState({isLoading: true})
         axios.post(URL_CHECKOUT, params).then( resp => {
-            console.log(resp)
             let newBuy = {}
             if (resp.status){
                 let url = resp.content
@@ -108,7 +106,6 @@ class index extends Component {
                     total: codes.length
                 }
                 MYBUYS[id] = newBuy
-                console.log(MYBUYS)
                 localStorage.setItem('myBuys', JSON.stringify(MYBUYS));
                 this.resetCart(url)
             } else {
@@ -144,7 +141,6 @@ class index extends Component {
     }
 
     toggle = () => {
-        console.log('toggle')
         this.setState(prevState => ({
             showModal: !prevState.showModal
         }))
@@ -161,7 +157,6 @@ class index extends Component {
     }
 
     exitModal = () => {
-        console.log('EXIT MODAL')
         if (this.state.isSold) {
             localStorage.removeItem('myCart')
             this.setState({
@@ -173,7 +168,6 @@ class index extends Component {
 
 
     render() {
-        console.log('render toggle')
 
         return (
             <Layout isLoading={this.state.isLoading}>

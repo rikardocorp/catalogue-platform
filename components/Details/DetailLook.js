@@ -32,7 +32,7 @@ const ProcessRelations = (relationsData=null, version='') => {
 
 const RecommenderCategories = (recommenderData) => {
 
-    let categories = CATEGORIES
+    let categories = Object.values(CATEGORIES)
     let contentCategories = []
     if (recommenderData) {
         categories.map((cat, index) => {

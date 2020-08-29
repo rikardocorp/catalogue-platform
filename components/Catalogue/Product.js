@@ -10,7 +10,6 @@ import useSWR from 'swr'
 import fetcher from "../../lib/fetcher"
 
 const handler = (sku = null, replaceLink=false) => {
-
     if (sku != null) {
         if (replaceLink) {
             Router.replace('/producto/[id]', '/producto/' + sku)

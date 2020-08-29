@@ -21,7 +21,6 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
         const { brand = '', images = [], pickItem = {}, price = {}, localSku='' } = data
         const { name = '', sku = null, referenceId='' } = pickItem
         let imageUrl = images[0]
-        console.log(items[item])
         let content = null
         if (sku != null) {
             totalAmount += parseFloat(count) * parseFloat(price.Price)

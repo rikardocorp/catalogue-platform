@@ -16,7 +16,6 @@ const DetailProductExt = ({ data = null, children = null, addCart = () => { }, i
     }
 
     const products = itemsList.map((prod, key) => {
-        console.log(key, prod)
         return (
             prod.size ? <option className='opt' key={key+1} value={prod.sku}>{prod.size[0]}</option> : null
         )

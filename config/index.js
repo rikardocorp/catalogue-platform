@@ -15,13 +15,21 @@ export const TITLE_SIMILAR_PRODUCTS = 'OTROS PRODUCTOS SIMILARES'
 export const PATH_IMAGE = ''
 
 // CATEGORIES MODA
-export const CATEGORIES = [
-  { key: 'cover', text: 'Covers' },
-  { key: 'top', text: 'Tops' },
-  { key: 'dress', text: 'Dresses' },
-  { key: 'middle', text: 'Middles' },
-  { key: 'bottom', text: 'Bottoms' }
+export const CATEGORIES2 = [
+  { key: 'cover', text: 'Casacas, Abrigos Y Chompas' },
+  { key: 'top', text: 'Polos, Blusas Y Tops' },
+  { key: 'dress', text: 'Vestidos' },
+  { key: 'middle', text: 'Pantalones, Jeans Y Faldas' },
+  { key: 'bottom', text: 'Zapatos y Zapatillas' }
 ]
+
+export const CATEGORIES = {
+  cover: { key: 'cover', text: 'Casacas, Abrigos Y Chompas' },
+  top: { key: 'top', text: 'Polos, Blusas Y Tops' },
+  dress: { key: 'dress', text: 'Vestidos' },
+  middle: { key: 'middle', text: 'Pantalones, Jeans Y Faldas' },
+  bottom: { key: 'bottom', text: 'Zapatos y Zapatillas' }
+}
 
 // REACT CONFIG
 export const BANNER_TOP = [

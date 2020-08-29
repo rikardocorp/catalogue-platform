@@ -23,15 +23,12 @@ export class index extends Component {
 
     componentDidMount() {
         const MYBUYS = JSON.parse(localStorage.getItem('myBuys')) || {}
-        console.log('MY COMPRAS')
-        console.log(MYBUYS)
         this.setState({
             myBuys: MYBUYS,
         })
     }
 
     toggle = () => {
-        console.log('toggle')
         this.setState(prevState => ({
             showModal: !prevState.showModal
         }))

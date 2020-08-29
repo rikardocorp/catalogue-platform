@@ -8,12 +8,12 @@ import {
 } from 'reactstrap';
 
 
-const handler = (looks) => {
+const handler = (id) => {
     // Router.push({
     //     pathname: '/catalogo/' + looks,
     //     query: { name: 'Vercel' },
     // })
-    Router.push('/catalogo/[looks]', '/catalogo/' + looks)
+    Router.push('/catalogo/[id]', '/catalogo/' + id)
 }
 
 const ProductCategory = ({data}) => {

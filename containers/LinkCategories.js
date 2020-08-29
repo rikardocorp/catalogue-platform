@@ -12,6 +12,7 @@ class LinkCategories extends Component {
         return (
             <Catalogue 
                 typeCard={'column'}
+                className='overflow-hidden'
                 items={ITEMS_CATEGORIES}
                 componentItem={ProductCategory}
                 title={TITLE_CATEGORIES}>

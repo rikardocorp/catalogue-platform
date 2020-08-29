@@ -6,19 +6,19 @@ import LayoutSection from '../../components/Layouts/LayoutSection'
 import Title from '../../components/Catalogue/Title'
 import { format } from 'react-string-format'
 import { TITLE_CATALOGUE_LOOKS, URL_CATALOGUE_LOOK } from '../../config'
-// import Loading from '../../components/loading'
-
-// import {Card, CardImg, CardBody, CardTitle, Row, Col } from 'reactstrap'
 import ContCatalogue from '../../containers/ContCatalogue'
 import ProductItem from '../../components/CataloguePagination/ProductItem'
-const Looks = () => {
-    const router = useRouter()
-    const { looks=null } = router.query
-    console.log('LOOKS', looks)
-    console.log(format(URL_CATALOGUE_LOOK, looks))
 
-    const urlCatalogue = looks != null ? format(URL_CATALOGUE_LOOK, looks) : null
-    console.log(urlCatalogue)
+const Index = () => {
+    const router = useRouter()
+    let { id = null } = router.query
+
+    // Exception SPORT
+    if (id == 'COMFORT') {
+        id = 'SPORT'
+    }
+
+    const urlCatalogue = id != null ? format(URL_CATALOGUE_LOOK, id) : null
     return (
         <Layout>
             <Head>
@@ -27,22 +27,25 @@ const Looks = () => {
             <LayoutSection className='mt-2 p-4 p-md-1'>
                 <Title className='pt-4 text-uppercase'>
                     <span className='cursor-pointer pr-2 hvr-backward' onClick={() => Router.push('/')}><i className="fas fa-chevron-left"></i> </span>
-                    <span> {format(TITLE_CATALOGUE_LOOKS, looks)}</span>
+                    <span> {format(TITLE_CATALOGUE_LOOKS, id)}</span>
                 </Title>
             </LayoutSection>
             <LayoutSection>
-                <ContCatalogue 
-                    keyName={looks} 
-                    url={urlCatalogue}
-                    componentItem={ProductItem}
-                    className={'cp-catalogue-looks'}
-                ></ContCatalogue>
+                {
+                    id ? (
+                        <ContCatalogue
+                            keyName={id}
+                            url={urlCatalogue}
+                            componentItem={ProductItem}
+                            className={'cp-catalogue-looks'}
+                        ></ContCatalogue>
+                    ) : null
+                }
             </LayoutSection>
-            
         </Layout>
     )
 
 }
 
-export default Looks
+export default Index
 

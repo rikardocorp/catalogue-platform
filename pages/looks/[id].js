@@ -6,9 +6,7 @@ import LayoutSection from '../../components/Layouts/LayoutSection'
 import DetailLook from '../../components/Details/DetailLook'
 import ContDetailLook from '../../containers/ContDetailLook'
 import Title from '../../components/Catalogue/Title'
-import {
-    TITLE_SELECT_LOOKS
-} from '../../config'
+import { TITLE_SELECT_LOOKS } from '../../config'
 
 const Index = () => {
     const router = useRouter()
@@ -27,7 +25,6 @@ const Index = () => {
                 </Title>
             </LayoutSection>
             <ContDetailLook sku={id} className='cp-looks'></ContDetailLook>
-            {/* <DetailLook></DetailLook> */}
         </Layout>
     )
     

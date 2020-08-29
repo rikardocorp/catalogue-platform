@@ -5,19 +5,16 @@ import React, { useState } from 'react'
 import Image from '../components/image'
 import ContEmpty from '../components/Empty/ContEmpty'
 
-import { useToasts } from 'react-toast-notifications'
-import { MESSAGE_REMOVE_CART } from '../config'
+// import { useToasts } from 'react-toast-notifications'
+// import { MESSAGE_REMOVE_CART } from '../config'
 import Link from 'next/link'
 
 const ContMyBags = ({ items = {}}) => {
 
-    console.log('ContMyBags')
-    console.log(items)
-
     const [OpenModal, setOpenModal] = useState(false)
     const [MyCart, setMyCart] = useState(null)
 
-    const { addToast } = useToasts()
+    // const { addToast } = useToasts()
     let list_bags = Object.values(items)
 
     const listItems = list_bags.reverse().map((item, index) => {
