@@ -1,10 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState, useContext } from 'react'
 import { Container, Row, Col, Button } from 'reactstrap'
 import PrincipalImage from '../components/Details/PrincipalImage'
 import Catalogue from '../components/Catalogue/Catalogue'
 import Product from '../components/Catalogue/Product'
 import DetailProduct from '../components/Details/DetailProduct'
 import DetailProductExt from '../components/Details/DetailProductExt'
+import UserContext from '../components/UserContext';
 
 
 import useSWR from 'swr'
@@ -12,7 +13,7 @@ import fetcher from "../lib/fetcher"
 import { URL_SEARCH_SKU, MESSAGE_ADD_CART, URL_RECOMMENDER_SAMES, TITLE_SIMILAR_PRODUCTS} from '../config/index'
 import { useToasts } from 'react-toast-notifications'
 
-const onClickNotify = (notify, localSku, message, item) => {
+const onClickNotify = (notify, updateTotalProducts, localSku, message, item) => {
     // toast.notify(`Hi, I am a toast!`)
     let myCart = JSON.parse(localStorage.getItem('myCart')) || {};
 
@@ -32,6 +33,7 @@ const onClickNotify = (notify, localSku, message, item) => {
         }
         myCart[sku.toString()] = itemMyCart
         localStorage.setItem('myCart', JSON.stringify(myCart));
+        updateTotalProducts()
     } else {
         msg = 'Debe seleccionar una talla para agregar a la bolsa.'
         appearance = 'info'
@@ -48,6 +50,8 @@ const onClickSetPickItem = (pickItem, item) => {
 }
 
 const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=null }) => {
+    const { totalProducts = null, updateTotalProducts } = useContext(UserContext);
+
     const [ pickItem, setPickItem ] = useState(null)
     const { addToast } = useToasts()
 
@@ -85,7 +89,7 @@ const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=nu
                             <DetailProductExt 
                                 data={item_ext} 
                                 setPickItem={(value) => onClickSetPickItem(setPickItem, value)}
-                                addCart={(a, b) => onClickNotify(addToast, sku, a,b)}
+                                addCart={(a, b) => onClickNotify(addToast, updateTotalProducts, sku, a,b)}
                                 isLoading={!item_ext.status}/>
                         )
                     }

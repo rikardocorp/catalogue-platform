@@ -1,3 +1,4 @@
+import react, { useContext } from 'react'
 import { 
     ListGroup, ListGroupItem, Row, Col, Button, Jumbotron, Container, Form
 } from 'reactstrap'
@@ -7,12 +8,22 @@ import { MESSAGE_REMOVE_CART} from '../config'
 import ContEmpty from '../components/Empty/ContEmpty'
 
 import Link from 'next/link'
+import UserContext from '../components/UserContext';
+
 
 
 const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null}) => {
 
+    const { updateTotalProducts } = useContext(UserContext);
+
+
     const { addToast } = useToasts()
     let list_products = Object.keys(items)
+
+    const ChangeFunc = (toast, message, data, type) => {
+        deleteMethod(toast, message, data, type)
+        // updateTotalProducts()
+    }
 
     let total = list_products.length
     let totalAmount = 0
@@ -53,13 +64,13 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
                         {
                             deleteMethod != null ? (
                                 <Col className='d-flex align-items-center cp-options-bag-item' sm={2}>
-                                    <Button size='sm' className='cp-button cp-options-minus' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data, 'MINUS')}>
+                                    <Button size='sm' className='cp-button cp-options-minus' onClick={() => ChangeFunc(addToast, MESSAGE_REMOVE_CART, data, 'MINUS')}>
                                         <i className="fas fa-minus">{'  '}</i>
                                     </Button>
-                                    <Button size='sm' className='cp-button cp-options-remove' onClick={() => deleteMethod(addToast, MESSAGE_REMOVE_CART, data)}>
+                                    <Button size='sm' className='cp-button cp-options-remove' onClick={() => ChangeFunc(addToast, MESSAGE_REMOVE_CART, data)}>
                                         <i className="fas fa-trash">{'  '}</i>
                                     </Button>
-                                    <Button size='sm' className='cp-button cp-options-plus' onClick={() => deleteMethod(null, null, data, 'PLUS')}>
+                                    <Button size='sm' className='cp-button cp-options-plus' onClick={() => ChangeFunc(null, null, data, 'PLUS')}>
                                         <i className="fas fa-plus">{'  '}</i>
                                     </Button>
                                 </Col>

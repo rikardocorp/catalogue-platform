@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useContext } from 'react'
 import Head from 'next/head'
 import Layout, { siteTitle } from '../../components/Layouts/LayoutA'
 import LayoutSection from '../../components/Layouts/LayoutSection'
@@ -14,11 +14,13 @@ import {
     Button, Modal, ModalHeader, ModalBody, ModalFooter, Input
 } from 'reactstrap'
 
+// import UserContext from '../../components/UserContext';
 
 class index extends Component {
 
     state = {
         myCart: {},
+        totalMyCart: 0,
         showModal: false,
         isSold: false,
         isLoading: false
@@ -51,8 +53,10 @@ class index extends Component {
             }
         }
 
-        this.setState({ myCart: myCart })
+        this.setState({ myCart: myCart, totalMyCart: this.countProducts(myCart) })
         localStorage.setItem('myCart', JSON.stringify(myCart));
+
+        this.props.updateTotalProducts()
 
         if (notify != null && count==0) {
             notify(message, {
@@ -62,6 +66,14 @@ class index extends Component {
         }
     }
 
+    countProducts = (data) => {
+        let total = 0
+        Object.values(data).map(x => {
+            total += x.count
+        })
+        return total
+    }
+
     componentDidMount() {
         const MYCART = JSON.parse(localStorage.getItem('myCart')) || {}
         const checkout = JSON.parse(localStorage.getItem('checkout')) || null
@@ -69,7 +81,18 @@ class index extends Component {
         this.setState({
             myCart: MYCART,
             checkout: checkout,
+            totalMyCart: this.countProducts(MYCART)
         })
+    }
+
+    redirectLink = (url) => {
+        if (url) {
+            window.open(url, '_ blank')
+        }
+    }
+
+    buyProducts2 = (e, addToast) => {
+        this.redirectLink('https://google.com')
     }
 
     buyProducts = (e, addToast) => {
@@ -108,6 +131,7 @@ class index extends Component {
                 MYBUYS[id] = newBuy
                 localStorage.setItem('myBuys', JSON.stringify(MYBUYS));
                 this.resetCart(url)
+                this.redirectLink(url)
             } else {
                 let msg = 'Ocurrio un error en la compra, vuelva a intentar.'
                 let appearance = 'info'
@@ -130,14 +154,16 @@ class index extends Component {
     }
 
     resetCart = (checkout) => {
-        this.toggle()
+        // this.toggle()
         localStorage.removeItem('myCart')
         localStorage.removeItem('checkout')
         this.setState({
             myCart: {},
             checkout: checkout,
-            isLoading: false
+            isLoading: false,
+            totalMyCart: 0
         })
+        this.props.updateTotalProducts()
     }
 
     toggle = () => {
@@ -160,7 +186,8 @@ class index extends Component {
         if (this.state.isSold) {
             localStorage.removeItem('myCart')
             this.setState({
-                myCart: {}
+                myCart: {},
+                totalMyCart: 0
             })
             Router.push('/')
         }

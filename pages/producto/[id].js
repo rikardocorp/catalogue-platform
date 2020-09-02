@@ -14,6 +14,7 @@ import useSWR from 'swr'
 import fetcher from "../../lib/fetcher"
 
 const Index = () => {
+
     const router = useRouter()
     const { id } = router.query
 
@@ -22,8 +23,6 @@ const Index = () => {
     let statusA = false 
     let responseA = useSWR(urlItemA, fetcher);
     const queryA = responseA.data ? responseA.data[0] : undefined
-    console.log('Producto')
-    console.log(queryA)
     const { item_key_features=null, sku2=null } = queryA || {}
     if (responseA && responseA.data != undefined) {
         statusA = true

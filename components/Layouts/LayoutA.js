@@ -1,11 +1,13 @@
-import react from 'react'
+import react, {useContext} from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import Navbar from '../navbar'
+import Navbar from '../Header'
 import LoadingBackdrop from '../loadingBackdrop'
 import { HEADER_TITLE } from '../../config'
 import { colorMode } from '../../lib/utils'
 import { ToastProvider, DefaultToast } from 'react-toast-notifications'
+import UserContext from '../../components/UserContext';
+
 
 export const siteTitle = HEADER_TITLE
 
@@ -15,10 +17,12 @@ export const MyCustomToast = ({ children, ...props }) => (
     </DefaultToast>
 );
 
-const Layout = ({ children, darkMode=false, isLoading=false }) => {
+const Layout = ({ children, darkMode = false, isLoading = false, totalMyCart=null }) => {
 
+    const { totalProducts = null } = useContext(UserContext);
     let { bgColor, textCorlor, textColorInverted } = colorMode(darkMode)
 
+    const localTotal = totalMyCart != null ? totalMyCart : totalProducts
     return (
         <>
             <Head>
@@ -45,7 +49,7 @@ const Layout = ({ children, darkMode=false, isLoading=false }) => {
             
 
             <header className='bg-dark'>
-                <Navbar className='w-lg-75 w-xl-75 w-sm-100 w-md-100 m-auto'></Navbar>
+                <Navbar className='w-lg-75 w-xl-75 w-sm-100 w-md-100 m-auto' totalProducts={localTotal}></Navbar>
             </header>
             <main className={bgColor}>
                 <ToastProvider components={{ Toast: MyCustomToast }}>

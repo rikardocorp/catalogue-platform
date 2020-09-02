@@ -26,6 +26,7 @@ import '@fortawesome/fontawesome-free/scss/solid.scss'
 // import App, { Container } from 'next/app'
 // import React from 'react'
 // import './app.css'
+import UserContext from '../components/UserContext';
 import TagManager from 'react-gtm-module'
 
 const tagManagerArgs = {
@@ -34,30 +35,40 @@ const tagManagerArgs = {
 
 
 class MyApp extends App {
+    state = {
+        user: null,
+        totalProducts: null
+    } 
+    
+    updateTotalProducts = (value) => {
+        const MYCART = JSON.parse(localStorage.getItem('myCart')) || {}
+        this.setState({
+            totalProducts: this.countProducts(MYCART),
+        })
+    }
+
+    countProducts = (data) => {
+        let total = 0
+        Object.values(data).map(x => { total += x.count})
+        return total
+    }
+
     componentDidMount() {
         TagManager.initialize(tagManagerArgs)
+        const MYCART = JSON.parse(localStorage.getItem('myCart')) || {}
+        this.setState({
+            totalProducts: this.countProducts(MYCART),
+        })
     }
     render() {
         const { Component, pageProps } = this.props
-        return <Component {...pageProps} />
+        // return <Component {...pageProps} />
+        return (
+            <UserContext.Provider value={{ totalProducts: this.state.totalProducts, updateTotalProducts: this.updateTotalProducts }}>
+                <Component {...pageProps} updateTotalProducts={this.updateTotalProducts} />
+            </UserContext.Provider>
+        );
     }
 }
-
-
-
-// class MyApp extends App {
-//     componentDidMount() {
-//         TagManager.initialize(tagManagerArgs)
-//     }
-
-//     render() {
-//         const { Component, pageProps } = this.props
-//         return (
-//             <Container>
-//                 <Component {...pageProps} />
-//             </Container>
-//         )
-//     }
-// }
 
 export default MyApp
