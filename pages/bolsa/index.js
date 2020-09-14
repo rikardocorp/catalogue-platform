@@ -87,7 +87,7 @@ class index extends Component {
 
     redirectLink = (url) => {
         if (url) {
-            window.open(url, '_ blank')
+            window.open(url, '_self')
         }
     }
 
@@ -98,6 +98,8 @@ class index extends Component {
     buyProducts = (e, addToast) => {
 
         e.preventDefault()
+        // this.redirectLink('https://google.com')
+        // return
         // const { addToast } = useToasts()
 
         let MYBUYS = JSON.parse(localStorage.getItem('myBuys')) || {}
