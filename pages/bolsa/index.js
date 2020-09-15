@@ -214,7 +214,7 @@ class index extends Component {
                         </div>
                     </Title>
                 </LayoutSection>
-                <LayoutSection id='bolsa' className='mx-2 px-4'>
+                <LayoutSection id='bolsa' className='mx-2 px-1 px-md-4'>
                     <ContShoppingBag items={this.state.myCart} deleteMethod={this.removeItem} buyProducts={this.buyProducts}></ContShoppingBag>
                 </LayoutSection>
                 <Modal

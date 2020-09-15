@@ -99,7 +99,7 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
                             </ListGroup>
                             <Container>
                                 <Row className='mt-5 mb-4'>
-                                    <Col xs={2}>
+                                    <Col xs={{size:5, offset:2}} sm={{size:2, offset:0}}>
                                         <h4 className='text-right'>
                                             <strong>TOTAL</strong>
                                         </h4>
@@ -107,8 +107,8 @@ const ContShoppingBag = ({ items = {}, deleteMethod = null, buyProducts = null})
                                     <Col xs={5} sm={6} md={7}>
                                         <h4 className='pl-3'>S/ {Number((totalAmount).toFixed(2))}</h4>
                                     </Col>
-                                    <Col xs={5} sm={4} md={3}>
-                                        <Form id='formBuyProduct' onSubmit={(e) => buyProducts(e, addToast)}>
+                                    <Col xs={12} sm={4} md={3}>
+                                        <Form id='formBuyProduct' className='text-right mt-2 mt-sm-0' onSubmit={(e) => buyProducts(e, addToast)}>
                                             <Button id='buyProducts' className='cp-button' type='submit'>
                                                 <i className="fas fa-shopping-bag">{'  '}</i>
                                                 <span>   COMPRAR</span>

@@ -7,7 +7,7 @@ import Loading from '../../components/loading'
 import { CardGroup } from 'reactstrap'
 
 export const Fallback = ({ children }) => {
-    return <CardGroup>{children}</CardGroup>;
+    return <CardGroup className='cp-card-all-columns'>{children}</CardGroup>;
 }
 
 const CatalogueList = ({ keyName='default', url='', componentItem=null, className=''}) => {
