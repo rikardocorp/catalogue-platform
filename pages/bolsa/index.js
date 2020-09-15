@@ -203,18 +203,18 @@ class index extends Component {
                 <Head>
                     <title>{siteTitle}</title>
                 </Head>
-                <LayoutSection className='mt-2 p-4 p-md-1'>
+                <LayoutSection className='mt-2 p-4'>
                     <Title className='pt-4 text-uppercase'>
                         <span className='cursor-pointer pr-2 hvr-backward' onClick={() => Router.push('/')}><i className="fas fa-chevron-left"></i> </span>
                         <span> {TITLE_BAG}</span>
-                        <div className='cp-onclick float-right'>
+                        <div className='cp-onclick float-right cp-reset-css'>
                             <Button size='sm' className='cp-button' onClick={() => {Router.push('/compras')}}>
                                 MIS BOLSAS DE COMPRAS
                             </Button>
                         </div>
                     </Title>
                 </LayoutSection>
-                <LayoutSection id='bolsa'>
+                <LayoutSection id='bolsa' className='mx-2 px-4'>
                     <ContShoppingBag items={this.state.myCart} deleteMethod={this.removeItem} buyProducts={this.buyProducts}></ContShoppingBag>
                 </LayoutSection>
                 <Modal

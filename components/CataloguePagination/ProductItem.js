@@ -19,7 +19,7 @@ const ProductItem = ({ index, data, sufix=null }) => {
     let { sku = '', imageUrl = '', productName = '' } = data
     const id = sufix ? sufix + '_' + sku : null
     return (
-        <Col id={id} xs={{ size: 8, offset: 2 }} sm={{ size: 6, offset: 0 }} md={4} lg={3} className='animate__animated animate__flipInX'>
+        <Col id={id} xs={6} sm={6} md={4} lg={3} className='animate__animated animate__flipInX'>
             <Card className='cp-product mb-4 box-shadow' onClick={()=> handler(sku)}>
                 <CardImg top width="100%" src={imageUrl} alt="Card image cap" />
             </Card>
@@ -30,7 +30,7 @@ export default ProductItem
 
 export const Fallback = () => {
     return (
-        <Col xs={{ size: 8, offset: 2 }} sm={{ size: 6, offset: 0 }} md={4} lg={3}>
+        <Col xs={6} sm={6} md={4} lg={3}>
             <Card className='cp-product mb-4 box-shadow animate__animated animate__fadeIn'>
                 <div className='square-box'></div>
             </Card>

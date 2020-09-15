@@ -92,7 +92,7 @@ body{
       @include media-breakpoint-only(md) {
         column-count: 2;
       }
-      @include media-breakpoint-only(sm) {
+      @include media-breakpoint-down(sm) {
         column-count: 2;
       }
   }
@@ -127,6 +127,10 @@ body{
       z-index: 10;
     }
   }
+}
+
+.cp-reset-css{
+  background: none;
 }
 
 .cp-product{
@@ -288,9 +292,14 @@ body{
   }
 }
 
+.cp-recommender{
+  
+}
+
 .cp-banner {
   &.carousel {
     &.cp-banner-type1 {
+      background: #95f7dd;
       .carousel-caption {
         h3 {
           span{

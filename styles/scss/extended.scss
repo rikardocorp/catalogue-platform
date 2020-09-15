@@ -163,3 +163,108 @@ html body {
   }
 
 }
+
+@include media-breakpoint-down(sm) {
+  .cp-banner-type1{
+    // border: 10px solid red;
+    // .carousel-item{
+      // width: 160% !important;
+    // }
+    .carousel-caption{
+      display: block !important;
+      // text-align: left;
+      // left: 10%;
+    }
+  }
+}
+
+@include media-breakpoint-only(md) {
+  .cp-banner-type1{
+    .carousel-caption p{
+      font-size: 1em;
+    }
+  }
+}
+
+@include media-breakpoint-only(sm) {
+  .cp-banner-type1{
+    .carousel-caption {
+      // top: 0;
+      p{
+        font-size: 1em;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+
+@include media-breakpoint-only(sm) {
+  #addToBag {
+    font-size: 1.2em;
+  }
+}
+
+@include media-breakpoint-only(xs) {
+  #addToBag {
+    width: 100%;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .cp-recommender{
+    margin-top: -115px;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .cp-banner-type1{
+    .carousel-item{
+      .carousel-caption{
+        // top:0;
+      }
+      padding: 30px 0;
+      p{
+        font-size: 0.75em;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .cp-banner-type1{
+    .carousel-item{
+      .carousel-caption{
+        top:0;
+      }
+    }
+  }
+
+  .cp-principal-image{
+    .cp-title {
+      background: black;
+      color: white;
+      padding: 7px;
+      margin: 0 0 20px 0 !important;
+    }
+  }
+
+  .card-group.cp-card-all-columns {
+    display: flex !important;
+    flex-flow: row wrap !important;
+    .card{
+      flex: 1 0;
+    }
+  }
+
+  .cp-onclick{
+    background: black;
+    color: white;
+    padding: 1px 8px;
+  }
+
+  .cp-options-bag-item{
+    text-align: right;
+  }
+}

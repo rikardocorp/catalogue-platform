@@ -18,7 +18,7 @@ const Index = () => {
                 <title>{siteTitle}</title>
             </Head>
 
-            <LayoutSection className='position-relative z-1'>
+            <LayoutSection className='position-relative z-1 px-4 pt-4' >
                 <Title className='pt-4 text-uppercase'>
                     <span className='cursor-pointer pr-2 hvr-backward' onClick={() => Router.back()}><i className="fas fa-chevron-left"></i> </span>
                     <span> {TITLE_SELECT_LOOKS}</span>

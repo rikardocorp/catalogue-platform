@@ -22,7 +22,8 @@ const CataRecommender = (props) => {
                 typeCard={'deck'}
                 items={items}
                 componentItem={Product}
-                colSizes={{md:3}}
+                colSizes={{md:3, xs:6}}
+                className='m-0'
                 // viewMore={() => this.onclick()}
                 title={TITLE_RECOMMENDER}>
             </Catalogue>

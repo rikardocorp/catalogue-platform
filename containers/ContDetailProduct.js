@@ -74,13 +74,13 @@ const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=nu
         <Container fluid className={className}>
 
             <Row className='' >
-                <Col md='5'>
+                <Col xs={{size:12, offset:0}} sm={6} lg={5} className='mb-4 mb-md-0'>
                     <PrincipalImage
                         className='animate__animated animate__slideInLeft' event_tops={()=>{}}
                         item={query}
                         pickItem={item_ext.data ? pickItem : null}/>
                 </Col>
-                <Col md='7'>
+                <Col sm={6} lg={7}>
                     <div className='animate__animated animate__slideInRight'>
                     {
                         item_ext == null || item_ext.data==null ? (
@@ -94,11 +94,13 @@ const ContDetailProduct = ({ id = null, className = '', item = null, item_ext=nu
                         )
                     }
                     </div>
+                </Col>
+                <Col className='cp-recommender' xs={12} lg={{ size: 7, offset: 5 }}>
                     <Catalogue
                         typeCard={'deck'}
                         items={itemsRecommender}
                         componentItem={Product}
-                        colSizes={{ md: 3 }}
+                        colSizes={{ md: 3, xs: 4, sm:3 }}
                         contClassName='mt-3'
                         replaceLink={true}
                         // viewMore={() => this.onclick()}

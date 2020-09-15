@@ -17,19 +17,19 @@ class index extends Component {
                     <title>{siteTitle}</title>
                 </Head>
 
-                <LayoutSection className='mt-2 '>
-                    <Banner className='animate__animated animate__flipInX' items={BANNER_TOP} typeStyle={'type1'} autoPlay={false} controls={false} indicators={false}></Banner>
+                <LayoutSection className='mt-lg-2 w-md-100'>
+                    <Banner className='animate__animated animate__flipInX py-3 py-sm-3 py-md-2' items={BANNER_TOP} typeStyle={'type1'} autoPlay={false} controls={false} indicators={false}></Banner>
                 </LayoutSection>
 
-                <LayoutSection className='mt-4 p-4 p-md-1'>
+                <LayoutSection className='mt-4 p-4 p-md-1 w-md-75'>
                     <LinkCategories></LinkCategories>
                 </LayoutSection>
 
-                <LayoutSection className='mt-2'>
+                <LayoutSection className='mt-2 w-md-75'>
                     <CataRecommender></CataRecommender>
                 </LayoutSection>
 
-                <LayoutSection className='mb-5'>
+                <LayoutSection className='mb-lg-1 w-md-100'>
                     <Banner items={BANNER_BOTTOM} typeStyle={'type2'} autoPlay={false} controls={false} indicators={false}></Banner>
                 </LayoutSection>
             </Layout>

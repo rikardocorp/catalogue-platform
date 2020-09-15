@@ -8,6 +8,7 @@ import { format } from 'react-string-format'
 import { TITLE_CATALOGUE_LOOKS, URL_CATALOGUE_LOOK } from '../../config'
 import ContCatalogue from '../../containers/ContCatalogue'
 import ProductItem from '../../components/CataloguePagination/ProductItem'
+import {CardGroup, Card, Col, Row} from 'reactstrap'
 
 const Index = () => {
     const router = useRouter()
@@ -24,20 +25,21 @@ const Index = () => {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <LayoutSection className='mt-2 p-4 p-md-1'>
+            <LayoutSection className='mt-2 p-4'>
                 <Title className='pt-4 text-uppercase'>
                     <span className='cursor-pointer pr-2 hvr-backward' onClick={() => Router.push('/')}><i className="fas fa-chevron-left"></i> </span>
                     <span> {format(TITLE_CATALOGUE_LOOKS, id)}</span>
                 </Title>
             </LayoutSection>
-            <LayoutSection>
+
+            <LayoutSection className='px-sm-4'>
                 {
                     id ? (
                         <ContCatalogue
                             keyName={id}
                             url={urlCatalogue}
                             componentItem={ProductItem}
-                            className={'cp-catalogue-looks'}
+                            className={'cp-catalogue-looks cp-card-all-columns'}
                         ></ContCatalogue>
                     ) : null
                 }

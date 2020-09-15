@@ -32,7 +32,7 @@ const DetailProductExt = ({ data = null, children = null, addCart = () => { }, i
             <h5><strong>{name}</strong></h5>
 
             <div className='row pt-3'>
-                <div className='col-6'>
+                <div className='col-8 col-sm-6'>
                     <span>
                         <strong>SKU: </strong>
                         <span id='skuShopStar'>{sku}</span>
@@ -44,7 +44,7 @@ const DetailProductExt = ({ data = null, children = null, addCart = () => { }, i
                         { products }
                     </Input>
                 </div>
-                <div id='price' className='col-6 cp-price'>
+                <div id='price' className='col-4 col-sm-6 cp-price'>
                     <div className='price-original'><span>S/ {price.ListPrice}</span></div>
                     {
                         price.PriceIBK != null ? (
@@ -68,7 +68,7 @@ const DetailProductExt = ({ data = null, children = null, addCart = () => { }, i
                 </div>
             </div>
             <br></br>
-            <div className='mt-4'>
+            <div className='mt-md-4'>
                 {
                     isLoading ? (
                         <Button style={{ opacity: 0.8 }} size="lg" className='cp-button'>Cargando...</Button>

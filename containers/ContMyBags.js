@@ -24,21 +24,21 @@ const ContMyBags = ({ items = {}}) => {
             content = (
                 <ListGroupItem id={'compra_item_' + index} key={index} className='py-4'>
                     <Row>
-                        <Col sm={1}>
+                        <Col xs={1} sm={1}>
                             <h5><strong>#{index + 1}</strong></h5>
                         </Col>
-                        <Col sm={3}>
+                        <Col xs={4} sm={3}>
                             <p>Nro. Productos: {total}</p>
                         </Col>
-                        <Col className='d-flex align-items-center' sm={3}>
+                        <Col xs={3} sm={3} className='d-flex align-items-center'>
                             <p><small>{date}</small></p>
                         </Col>
-                        <Col sm={2} className='d-flex align-items-center'>
+                        <Col xs={3} sm={2} className='d-flex align-items-center'>
                             <div className='cp-price border-0'>
                                 <div><h4><span>s/ {parseFloat(amount).toFixed(2)}</span></h4></div>
                             </div>
                         </Col>
-                        <Col className='' sm={3}>
+                        <Col xs={12} className='' sm={3}>
                             <div className='float-right'>
                                 <Button size='sm' className='cp-detail-purchase cp-button mr-2' onClick={() => { setMyCart(cart); setOpenModal(true)}}>
                                     <i className="fas fa-shopping-bag">{'  '}</i>
@@ -68,10 +68,10 @@ const ContMyBags = ({ items = {}}) => {
             let content = (
                 <ListGroupItem className='color-black p-0' key={index}>
                     <Row>
-                        <Col sm={2}>
+                        <Col xs={4} sm={2}>
                             <Image url={imageUrl}></Image>
                         </Col>
-                        <Col sm={5}>
+                        <Col xs={5} sm={5}>
                             <Link href='/producto/[id]' as={'/producto/' + localSku}>
                                 <a className='text-dark'>
                                     {name}
@@ -79,12 +79,12 @@ const ContMyBags = ({ items = {}}) => {
                             </Link>
                             <p><small>SKU: {sku}</small></p>
                         </Col>
-                        <Col sm={3} className='d-flex align-items-center'>
+                        <Col xs={3} sm={3} className='d-flex align-items-center'>
                             <div className='cp-price border-0'>
                                 <div><span>S/ {parseFloat(price.Price).toFixed(2)}</span></div>
                             </div>
                         </Col>
-                        <Col className='d-flex align-items-center' sm={2}>
+                        <Col xs={12} sm={2} className='d-md-flex align-items-center text-right'>
                             <p><strong>x {count}</strong></p>
                         </Col>
                     </Row>
@@ -114,7 +114,7 @@ const ContMyBags = ({ items = {}}) => {
                 contentClassName=''>
                 <ModalHeader className='bg-black text-white' toggle={() => { setOpenModal(!OpenModal) }}>Detalle de la compra</ModalHeader>
                 <ModalBody style={{ maxHeight: '500px', overflow:'auto'}}>
-                    <div className='mx-5 text-center color-white'>
+                    <div className='mx-md-5 text-center color-white'>
                         <ListGroup flush>
                             {
                                 listItemsCart

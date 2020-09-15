@@ -41,7 +41,7 @@ const ContDetailLook = ({sku=null, className=''}) => {
     return (  
         <Container fluid className={className}>
             <Row className='' >
-                <Col xs={{ size: 8, offset: 2 }} md={{ size: 5, offset: 0 }} lg={{ size: 4, offset: 1 }}
+                <Col xs={{ size: 10, offset: 1 }} sm={{ size: 6, offset: 3 }} md={{ size: 6, offset: 0 }} lg={{ size: 4, offset: 1 }}
                     className={"cp-looks-left h-100-header-bar m-height-header-bar position-sm-relative position-xs-relative py-1 d-flex align-items-center justify-content-center fixed-top z-0 pl-lg-5"}>
                     <div>
                         <PrincipalImage
@@ -51,7 +51,7 @@ const ContDetailLook = ({sku=null, className=''}) => {
                     </div>
 
                 </Col>
-                <Col xs={12} md={{ size: 7, offset: 5 }} lg={{ size: 6, offset: 5 }} className={"cp-looks-right py-2 pr-lg-5"}>
+                <Col xs={12} md={{ size: 6, offset: 6 }} lg={{ size: 6, offset: 5 }} className={"cp-looks-right py-2 pr-lg-5"}>
                     {contentCategories}
                 </Col>
             </Row>
@@ -73,7 +73,7 @@ const RecommenderCategories = (recommenderData, STORAGE, SETSTORAGE, CHANGE, SET
                 let key_name = recommenderData[key].id
                 contentCategories.push(
                     <Catalogue key={index} id={key_name} typeCard={'deck'} items={data}
-                        colSizes={{ md: 3 }}
+                        colSizes={{ md: 6 , xs:6, sm:3, lg:3}}
                         componentItem={Product}
                         viewMore={() => ViewMore(key, STORAGE, SETSTORAGE, CHANGE, SETCHANGE)}
                         title={text} className='cp-catalogue-products'>
